@@ -1,6 +1,6 @@
-#define _CRTDGB_MAP_ALLOC
-#include <crtdbg.h>
-#include "so_long.h"
+// #define _CRTDGB_MAP_ALLOC
+// #include <crtdbg.h>
+#include "1solong.h"
 
 void	check_map(t_va *va, char **av)
 {
@@ -57,6 +57,7 @@ void	ft_free(t_va *va)
 		free(va->cpy[i]);
 	// mlx_destroy_window(va->mlx, va->win);
 }
+
 int	check_pec01(char *line)
 {
 	int	p;
@@ -138,7 +139,7 @@ int	creat_cpy_and_check(t_va *va)
 	va->cpy = (char **)malloc(sizeof(char *) * va->iy);
 	while (++i < va->iy)
 		va->cpy[i] = ft_strdup(va->str[i]);
-	// check_path(va, va->cpy, va->s_cpy.yp, va->s_cpy.xp);
+	check_path(va, va->cpy, va->s_cpy.yp, va->s_cpy.xp);
 	if (check_cpy(va) == 1)
 		return (1);
 	return (0);
@@ -156,9 +157,7 @@ int	map_test(t_va *va)
 	if ((va->iy > 28) || (va->ix > 51))
 		return (1);
 	while (++j < va->iy)
-		if ((ft_strlen(va->str[0]) != ft_strlen(va->str[j]))
-			|| (va->str[j][va->ix - 1] != '1')
-			|| (va->str[j][0] != '1'))
+		if ((ft_strlen(va->str[0]) != ft_strlen(va->str[j])) || (va->str[j][va->ix - 1] != '1') || (va->str[j][0] != '1'))
 			return (1);
 	j = 0;
 	while (va->str[j][++i])
@@ -166,9 +165,10 @@ int	map_test(t_va *va)
 			return (1);
 	return (0);
 }
+
 int	main(int ac, char **av)
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF)
+	// _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF)
 	t_va		*va;
 	int			c_count;
 

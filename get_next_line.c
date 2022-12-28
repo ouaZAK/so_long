@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:23:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/11/30 17:50:20 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/28 10:46:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include"so_long.h"
-char **ft_split(char *s, char c);
+
 char *get_after_nl(char *stock)
 {
     char *str;
@@ -107,39 +107,39 @@ char *get_next_line(int fd)
     return (line);
 }
 
-// typedef struct	s_vars {
-// 	void	*mlx;
-// 	void	*win;
-// 	void *img_champ;
-// 	void *img_gras;
-// 	void *img_wall;
-// 	int img_width;
-// 	int img_height;
-// 	int x;
-// 	int y;
-// 	int ix;
-// 	int iy;
-// 	char **str;
-// 	char *line;
-// }				t_vars;
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+	void *img_champ;
+	void *img_gras;
+	void *img_wall;
+	int img_width;
+	int img_height;
+	int x;
+	int y;
+	int ix;
+	int iy;
+	char **str;
+	char *line;
+}				t_vars;
 
-// void check(t_vars *vars)
-// {
-//     t_vars var;
-//     vars = &var;
-// 	int fd1 = open("map.ber", O_RDONLY);
-// 	vars->line = get_next_line(fd1);
-// 	vars->ix = strlen(vars->line) - 1;
-// 	int i = 0;
-// 	while (vars->line)
-// 	{
-// 		vars->line = NULL;
-// 		vars->line = get_next_line(fd1);
-// 		i++;
-// 	}
-// 	vars->iy = i;
-// 	printf("%d\t%d\n", vars->iy, vars->ix);
-// }
+void check(t_vars *vars)
+{
+    t_vars var;
+    vars = &var;
+	int fd1 = open("map.ber", O_RDONLY);
+	vars->line = get_next_line(fd1);
+	vars->ix = strlen(vars->line) - 1;
+	int i = 0;
+	while (vars->line)
+	{
+		vars->line = NULL;
+		vars->line = get_next_line(fd1);
+		i++;
+	}
+	vars->iy = i;
+	printf("%d\t%d\n", vars->iy, vars->ix);
+}
 
 // int main()
 // {

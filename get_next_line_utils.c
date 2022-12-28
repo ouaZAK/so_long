@@ -6,15 +6,15 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:38:49 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/11/20 19:28:16 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:10:48 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_strlen(char *s)
+int ft_strlen(char *s)
 {
-    size_t i;
+    int i;
 
     i = 0;
     if (!s)

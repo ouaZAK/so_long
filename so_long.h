@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 09:36:27 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/11/30 17:43:51 by zouaraqa         ###   ########.fr       */
+/*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
+/*   Updated: 2022/12/28 12:45:49 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,76 +18,78 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include"get_next_line.h"
+# include "get_next_line.h"
 
-typedef struct img {
-	void	*champ;
-	void	*gras;
+typedef struct s_image {
+	void	*p1_up;
+	void	*p1_down;
+	void	*p1_left;
+	void	*p1_right;
 	void	*wall;
 	void	*coin;
 	void	*exit;
-	void	*door2;
-}	t_images;
+}t_image;
 
-typedef struct strings{
-	char	**cpy;
+typedef struct s_str_p{
 	char	*path1;
 	char	*path2;
 	char	*path3;
 	char	*path4;
-	char	*path5;
-	char	*path6;
-	int		xp;
-	int		yp;
-}	t_charr;
+}t_char_p;
 
-typedef struct s_va {
-	t_images	img;
-	t_charr		s_cpy;
-	void		*mlx;
-	void		*win;
+typedef struct s_str_w{
+	char	*path1;
+	char	*path2;
+	char	*path3;
+	char	*path4;
+}t_char_w;
+
+typedef struct s_str_c{
+	char	*path1;
+	char	*path2;
+	char	*path3;
+	char	*path4;
+}t_char_c;
+
+typedef struct s_chk{
+	int	p;
+	int	c;
+	int	e;
+}t_check;
+
+typedef struct s_var{
+	t_image		img;
+	t_char_p	p1;
+	t_char_c	coin;
+	t_char_w	wall;
+	t_check		chek;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	char		**str;
 	char		**cpy;
 	char		*line;
-	int			*coin;
-	int			img_wd;
-	int			img_hi;
+	int			width;
+	int			hight;
 	int			x;
 	int			y;
-	int			ix;
-	int			iy;
-	int			x_exit;
-	int			y_exit;
 	int			i;
 	int			j;
-}	t_va;
+	int			x_p;
+	int			y_p;
+	int			x_e;
+	int			y_e;
+	int			c;
+	int			fd;
+}t_var;
 
-void	check_map(t_va *va, char **av);
-void	count_coin(t_va *va, char c);
-void	stock_exit_player(t_va *va);
-void	my_put_image(t_va *va);
-void	set_map(t_va *va, char **av);
-void	player_movement(t_va *va, int x, int y, int *p);
-void	check_path(t_va *va, char **cpy, int y, int x);
-void	so_long(t_va *va, char **av);
-void	paths(t_va *va);
-void	swap_door(t_va *va, int x, int y);
-void	ft_free(t_va *va);
-int		check_pec01(char *line);
-int		key_hook(int keycode, t_va *va);
-int		map_test(t_va *va);
-int		check_cpy(t_va *va);
-int		creat_cpy_and_check(t_va *va);
-int		close_win(t_va *va);
-int		main(int ac, char **av);
-char	*ft_strjoin2(char *s1, char *s2);
-void	ft_free_cpy(t_va *va);
-void	ft_putchar(char c);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s1);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-char	**ft_split(char *s, char c);
-void	ft_putnbr(int n);
+// func
+void	check_errors(char **av, t_var *va);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_calloc(size_t count, size_t size);
+int		ft_strcmp(char *s1, char *s2);
+char	**ft_split(char const *s, char c);
+void	ft_free(t_var *va, char **str);
+void	exit_plus_error(t_var *va);
+char	*get_first_line(char **av, t_var *va, char *tmp);
 
 #endif

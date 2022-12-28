@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:32:42 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/11/30 17:47:02 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:10:58 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 char *get_next_line(int fd);
 char *ft_strjoin(char *s1, char *s2);
 int locate(char *s, char c);
-// size_t ft_strlen(char *s);
+int ft_strlen(char *s);
 
 #endif
