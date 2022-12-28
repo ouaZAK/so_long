@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/28 13:22:46 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:23:55 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	read_map(char **av, t_var *va)
 	va->cpy = ft_split(va->line, '\n');
 	if (check_size_and_walls(va) == 1)
 	{
-		write(1, "nice try >:D", 13);
+		write(1, "Error\nnice try >:D", 19);
 		free(va->line);
 		ft_free(va, va->str);
 		ft_free(va, va->cpy);
@@ -83,7 +83,26 @@ void	read_map(char **av, t_var *va)
 
 void	stock_p_and_e(t_var *va)
 {
-	
+	va->j = 0;
+	while (va->j < va->y)
+	{
+		va->i = 0;
+		while (va->str[va->j][va->i])
+		{
+			if (va->str[va->j][va->i] == 'P')
+			{
+				va->x_p = va->i;
+				va->y_p = va->j;
+			}
+			else if (va->str[va->j][va->i] == 'E')
+			{
+				va->x_e = va->i;
+				va->y_e = va->y;
+			}
+			va->i++;
+		}
+		va->j++;
+	}
 }
 
 void	check_errors(char **av, t_var *va)
@@ -95,4 +114,6 @@ void	check_errors(char **av, t_var *va)
 	va->line = NULL;
 	read_map(av, va);
 	stock_p_and_e(va);
+	check_path(va, va->y_p, va->x_p);
+	check_cpy(va);
 }

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/28 12:45:49 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:37:04 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,24 @@ typedef struct s_chk{
 	int	e;
 }t_check;
 
+typedef struct s_voides{
+	void	*img1;
+	void	*img2;
+	void	*img3;
+	void	*img4;
+	void	*img5;
+	void	*img6;
+	void	*img7;
+	void	*img8;
+}t_voids;
+
 typedef struct s_var{
 	t_image		img;
 	t_char_p	p1;
 	t_char_c	coin;
 	t_char_w	wall;
 	t_check		chek;
+	t_voids		vod;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		**str;
@@ -91,5 +103,7 @@ char	**ft_split(char const *s, char c);
 void	ft_free(t_var *va, char **str);
 void	exit_plus_error(t_var *va);
 char	*get_first_line(char **av, t_var *va, char *tmp);
+void	check_cpy(t_var *va);
+void	check_path(t_var *va, int y, int x);
 
 #endif
