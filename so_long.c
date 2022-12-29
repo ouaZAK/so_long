@@ -6,21 +6,75 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/28 15:41:14 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:31:53 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_path_for_images(t_var *va)
+int	ft_close(int key, t_var *va)
 {
-	va->p1.path1 = "./xpm/solder.xpm";
+	(void)va;
+	(void)key;
+	// mlx_destroy_window(va->mlx_ptr, va->win_ptr);
+	exit(0);
+	return (0);
 }
 
-void	creat_image_xpm(t_var *va)
+// void	set_path_for_images(t_var *va)
+// {
+// 	va->p1.path1 = "./xpm/solder.xpm";
+// }
+
+// void	creat_image_xpm(t_var *va)
+// {
+// 	va->vod.img1 = mlx_xpm_file_to_image(va->mlx_ptr, va->p1.path1, \
+// 		&va->width, &va->hight);
+// }
+
+void	put_image(t_var *va, char *path, int x, int y)
 {
-	va->vod.img1 = mlx_xpm_file_to_image(va->mlx_ptr, va->p1.path1, \
+	// printf("%d %d --- path = %s\n",x, y, path);
+	va->vod.img1 = mlx_xpm_file_to_image(va->mlx_ptr, path, \
 		&va->width, &va->hight);
+	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->vod.img1, x * 80, y * 80);
+}
+
+void	creat_map(t_var *va)
+{
+	va->j = 0;
+	while (va->j < va->y)
+	{
+		va->i = 0;
+		while (va->str[va->j][va->i])
+		{
+			if (va->str[va->j][va->i] == 'P')
+				put_image(va, "./textures/player.xpm", va->i, va->j);
+			else if (va->str[va->j][va->i] == '0')
+				put_image(va, "./textures/ground.xpm", va->i, va->j);
+			else if (va->str[va->j][va->i] == '1')
+				put_image(va, "./textures/wall.xpm", va->i, va->j);
+			else if (va->str[va->j][va->i] == 'E')
+				put_image(va, "./textures/exit.xpm", va->i, va->j);
+			else if (va->str[va->j][va->i] == 'C')
+				put_image(va, "./textures/coin.xpm", va->i, va->j);
+		va->i++;
+		}
+		va->j++;
+	}
+}
+
+void	start_everything(t_var *va)
+{
+	va->mlx_ptr = mlx_init();
+	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80, "so_long");
+	
+	creat_map(va);
+	// creat_image_xpm(va);
+	
+	
+	mlx_hook(va->win_ptr, 17, 0, ft_close, va);
+	mlx_loop(va->mlx_ptr);
 }
 
 int	main(int ac, char **av)
@@ -28,16 +82,13 @@ int	main(int ac, char **av)
 	t_var	*va;
 
 	if (ac != 2)
+	{
+		write(1, "Error\nonly 2 arrg plz\n", 23);
 		return (0);
+	}
 	va = malloc(sizeof(t_var));
 	check_errors(av, va);
-	set_path_for_images(va);
+	start_everything(va);
 	
-	printf("good");
 	
-	va->mlx_ptr = mlx_init();
-	creat_image_xpm(va);
-	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80, "so_long");
-	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->vod.img1, 0, 80);
-	mlx_loop(va->mlx_ptr);
 }

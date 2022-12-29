@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/28 15:37:04 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:41:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ typedef struct s_chk{
 typedef struct s_voides{
 	void	*img1;
 	void	*img2;
-	void	*img3;
-	void	*img4;
-	void	*img5;
-	void	*img6;
-	void	*img7;
-	void	*img8;
 }t_voids;
 
 typedef struct s_var{
@@ -93,6 +87,18 @@ typedef struct s_var{
 	int			c;
 	int			fd;
 }t_var;
+
+// list
+typedef struct s_list{
+	int				nbr;
+	struct s_list	*next;
+}t_list;
+
+t_list	*ft_lstnew(int	nbr);
+t_list	*ft_lstlast(t_list **lst);
+void	ft_lst_add_back(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst);
+
 
 // func
 void	check_errors(char **av, t_var *va);

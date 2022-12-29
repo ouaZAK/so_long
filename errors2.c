@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/28 15:24:16 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:26:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_free(t_var *va, char **str)
 void	exit_plus_error(t_var *va)
 {
 	free(va->line);
-	write(1, "Error\nnice try >:D", 19);
+	write(1, "Error\nnice try >:D\n", 20);
 	exit(0);
 }
 

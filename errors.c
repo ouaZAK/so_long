@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/28 15:23:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:28:25 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_size_and_walls(t_var *va)
 {
-	if (va->x > 51 || va->y > 28)// check win mac size ofr 64 pixel
+	if (va->x > 32 || va->y > 17)// check win mac size ofr 64 pixel
 		return (1);
 	va->i = -1;
 	va->j = -1;
@@ -73,7 +73,7 @@ void	read_map(char **av, t_var *va)
 	va->cpy = ft_split(va->line, '\n');
 	if (check_size_and_walls(va) == 1)
 	{
-		write(1, "Error\nnice try >:D", 19);
+		write(1, "Error\nnice try >:D\n", 20);
 		free(va->line);
 		ft_free(va, va->str);
 		ft_free(va, va->cpy);
@@ -105,10 +105,32 @@ void	stock_p_and_e(t_var *va)
 	}
 }
 
+int	compare(char **av, char *str)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	y = 0;
+	while (av[1][i] != str[0])
+		i++;
+		while (av[1][i] && str[y] && av[1][i] == str[y])
+		{
+			i++;
+			y++;
+		}
+	if (!av[1][i] && !str[y])
+		return (-1);
+	return (1);
+}
+
 void	check_errors(char **av, t_var *va)
 {
-	if (ft_strcmp(av[1], "map.ber") != 0)
+	if (compare(av, ".ber") == 1)
+	{
+		write(1, "Error\nonly .ber file >:D\n", 26);
 		exit(0);
+	}
 	va->str = NULL;
 	va->cpy = NULL;
 	va->line = NULL;
