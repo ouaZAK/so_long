@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/29 15:41:31 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:03:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "get_next_line.h"
+
+typedef struct s_list{
+	int				nbr;
+	struct s_list	*next;
+}t_list;
 
 typedef struct s_image {
 	void	*p1_up;
@@ -69,6 +74,7 @@ typedef struct s_var{
 	t_char_w	wall;
 	t_check		chek;
 	t_voids		vod;
+	t_list		*lst;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		**str;
@@ -86,14 +92,10 @@ typedef struct s_var{
 	int			y_e;
 	int			c;
 	int			fd;
+	int			fre;
 }t_var;
 
 // list
-typedef struct s_list{
-	int				nbr;
-	struct s_list	*next;
-}t_list;
-
 t_list	*ft_lstnew(int	nbr);
 t_list	*ft_lstlast(t_list **lst);
 void	ft_lst_add_back(t_list **lst, t_list *new);
@@ -112,4 +114,7 @@ char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
 
+
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
 #endif
