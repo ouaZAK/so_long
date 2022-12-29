@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 15:37:55 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/29 15:53:58 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:55:22 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_lst_add_back(t_list **lst, t_list *new)
 		return ;
 	}
 	move = *lst;
-	ft_lstlast(move)->next = new;
+	ft_lstlast(&move)->next = new;
 }
 
 void	ft_lstclear(t_list **lst)
@@ -51,7 +51,7 @@ void	ft_lstclear(t_list **lst)
 	t_list *tmp;
 	
 	if (!lst)
-		return (0);
+		return ;
 	while (*lst)
 	{
 		tmp = (*lst)->next;
