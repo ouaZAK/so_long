@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/29 15:26:31 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 09:52:58 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ void	check_path(t_var *va, int y, int x)
 
 void	check_cpy(t_var *va)
 {
-	va->chek.p = 0;
-	va->chek.c = 0;
-	va->chek.e = 0;
+	va->p = 0;
+	va->c = 0;
+	va->e = 0;
 	va->j = 0;
 	while (va->j < va->y)
 	{
@@ -92,15 +92,15 @@ void	check_cpy(t_var *va)
 		while (va->cpy[va->j][va->i])
 		{
 			if (va->cpy[va->j][va->i] == 'P')
-				va->chek.p++;
+				va->p++;
 			else if (va->cpy[va->j][va->i] == 'E')
-				va->chek.e++;
+				va->e++;
 			else if (va->cpy[va->j][va->i] == 'C')
-				va->chek.c++;	
+				va->c++;
 		va->i++;
 		}
 		va->j++;
 	}
-	if (va->chek.p != 0 || va->chek.c != 0 || va->chek.e != 0)
+	if (va->p != 0 || va->c != 0 || va->e != 0)
 		exit_plus_error(va);
 }

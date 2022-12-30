@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/29 15:28:25 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 09:52:32 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_size_and_walls(t_var *va)
 {
-	if (va->x > 32 || va->y > 17)// check win mac size ofr 64 pixel
+	if (va->x > 32 || va->y > 17)
 		return (1);
 	va->i = -1;
 	va->j = -1;
@@ -30,25 +30,25 @@ int	check_size_and_walls(t_var *va)
 
 void	check_pec01(t_var *va)
 {
-	va->chek.p = 0;
-	va->chek.c = 0;
-	va->chek.e = 0;
+	va->p = 0;
+	va->c = 0;
+	va->e = 0;
 	va->i = 0;
 	while (va->line[va->i])
 	{
 		if (va->line[va->i] == 'P')
-			va->chek.p++;
+			va->p++;
 		else if (va->line[va->i] == 'C')
-			va->chek.c++;
+			va->c++;
 		else if (va->line[va->i] == 'E')
-			va->chek.e++;
+			va->e++;
 		else if (va->line[va->i] != 'E' && va->line[va->i] != 'P'
 			&& va->line[va->i] != 'C' && va->line[va->i] != '0'
 			&& va->line[va->i] != '1' && va->line[va->i] != '\n')
 			exit_plus_error(va);
 		va->i++;
 	}
-	if (va->chek.p != 1 || va->chek.e != 1 || va->chek.c < 1)
+	if (va->p != 1 || va->e != 1 || va->c < 1)
 		exit_plus_error(va);
 }
 
@@ -74,11 +74,9 @@ void	read_map(char **av, t_var *va)
 	if (check_size_and_walls(va) == 1)
 	{
 		write(1, "Error\nnice try >:D\n", 20);
-		free(va->line);
-		ft_free(va, va->str);
-		ft_free(va, va->cpy);
 		exit(0);
 	}
+	close(va->fd);
 }
 
 void	stock_p_and_e(t_var *va)

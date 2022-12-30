@@ -6,58 +6,46 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 15:37:55 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/29 18:02:50 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 09:58:25 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_list	*ft_lstnew(int nbr)
+int	ft_close(int key, t_var *va)
 {
-	t_list	*new;
-
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
-		return (0);
-	new->nbr = nbr;
-	new->next = NULL;
-	return (new);
+	(void)va;
+	(void)key;
+	// mlx_destroy_window(va->mlx_ptr, va->win_ptr);
+	exit(0);
+	return (0);
 }
 
-t_list	*ft_lstlast(t_list **lst)
+void	put_image(t_var *va, void *img, int x, int y)
 {
-	if (!lst)
-		return (0);
-	while ((*lst)->next)
-		(*lst) = (*lst)->next;
-	return (*lst);
+	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, img, x * 80, y * 80);
 }
 
-void	ft_lst_add_back(t_list **lst, t_list *new)
+void	creat_image_path(t_var *va)
 {
-	t_list	*move;
-	
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	move = *lst;
-	ft_lstlast(&move)->next = new;
-}
-
-void	ft_lstclear(t_list **lst)
-{
-	t_list *tmp;
-	
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		free(*lst);
-		*lst = tmp;
-	}
+	va->vod.img_up = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/up.xpm",
+		&va->width, &va->hight);
+	va->vod.img_down = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/down.xpm",
+		&va->width, &va->hight);
+	va->vod.img_right = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/right.xpm",
+		&va->width, &va->hight);
+	va->vod.img_left = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/left.xpm",
+		&va->width, &va->hight);
+	va->vod.img_coin = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/coin.xpm",
+		&va->width, &va->hight);
+	va->vod.img_exit = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/exit.xpm",
+		&va->width, &va->hight);
+	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/wall.xpm",
+		&va->width, &va->hight);
+	va->vod.img_fire = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/firewall.xpm",
+		&va->width, &va->hight);
+	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/ground.xpm",
+		&va->width, &va->hight);
 }
 
 void	ft_putchar_fd(char c, int fd)

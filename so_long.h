@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/29 18:03:21 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 09:57:24 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,61 +20,20 @@
 # include <unistd.h>
 # include "get_next_line.h"
 
-typedef struct s_list{
-	int				nbr;
-	struct s_list	*next;
-}t_list;
-
-typedef struct s_image {
-	void	*p1_up;
-	void	*p1_down;
-	void	*p1_left;
-	void	*p1_right;
-	void	*wall;
-	void	*coin;
-	void	*exit;
-}t_image;
-
-typedef struct s_str_p{
-	char	*path1;
-	char	*path2;
-	char	*path3;
-	char	*path4;
-}t_char_p;
-
-typedef struct s_str_w{
-	char	*path1;
-	char	*path2;
-	char	*path3;
-	char	*path4;
-}t_char_w;
-
-typedef struct s_str_c{
-	char	*path1;
-	char	*path2;
-	char	*path3;
-	char	*path4;
-}t_char_c;
-
-typedef struct s_chk{
-	int	p;
-	int	c;
-	int	e;
-}t_check;
-
 typedef struct s_voides{
-	void	*img1;
-	void	*img2;
+	void	*img_up;
+	void	*img_down;
+	void	*img_right;
+	void	*img_left;
+	void	*img_wall;
+	void	*img_fire;
+	void	*img_coin;
+	void	*img_exit;
+	void	*img_ground;
 }t_voids;
 
 typedef struct s_var{
-	t_image		img;
-	t_char_p	p1;
-	t_char_c	coin;
-	t_char_w	wall;
-	t_check		chek;
 	t_voids		vod;
-	t_list		*lst;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		**str;
@@ -90,16 +49,11 @@ typedef struct s_var{
 	int			y_p;
 	int			x_e;
 	int			y_e;
+	int			p;
+	int			e;
 	int			c;
 	int			fd;
-	int			fre;
 }t_var;
-
-// list
-t_list	*ft_lstnew(int	nbr);
-t_list	*ft_lstlast(t_list **lst);
-void	ft_lst_add_back(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst);
 
 
 // func
@@ -113,7 +67,9 @@ void	exit_plus_error(t_var *va);
 char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
-
+int		ft_close(int key, t_var *va);
+void	put_image(t_var *va, void *img, int x, int y);
+void	creat_image_path(t_var *va);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
