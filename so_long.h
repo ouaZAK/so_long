@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 09:57:24 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:56:55 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ typedef struct s_var{
 	int			p;
 	int			e;
 	int			c;
+	int			movement;
+	int			count;
+	int			coin;
 	int			fd;
 }t_var;
-
 
 // func
 void	check_errors(char **av, t_var *va);
@@ -70,7 +72,9 @@ void	check_path(t_var *va, int y, int x);
 int		ft_close(int key, t_var *va);
 void	put_image(t_var *va, void *img, int x, int y);
 void	creat_image_path(t_var *va);
+int		compare(char **av, char *str);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
 #endif

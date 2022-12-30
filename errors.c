@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 09:52:32 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:56:43 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	read_map(char **av, t_var *va)
 void	stock_p_and_e(t_var *va)
 {
 	va->j = 0;
+	va->coin = 0;
 	while (va->j < va->y)
 	{
 		va->i = 0;
@@ -97,29 +98,12 @@ void	stock_p_and_e(t_var *va)
 				va->x_e = va->i;
 				va->y_e = va->y;
 			}
+			else if (va->str[va->j][va->i] == 'C')
+				va->coin++;
 			va->i++;
 		}
 		va->j++;
 	}
-}
-
-int	compare(char **av, char *str)
-{
-	int	i;
-	int	y;
-
-	i = 0;
-	y = 0;
-	while (av[1][i] != str[0])
-		i++;
-		while (av[1][i] && str[y] && av[1][i] == str[y])
-		{
-			i++;
-			y++;
-		}
-	if (!av[1][i] && !str[y])
-		return (-1);
-	return (1);
 }
 
 void	check_errors(char **av, t_var *va)
@@ -132,6 +116,8 @@ void	check_errors(char **av, t_var *va)
 	va->str = NULL;
 	va->cpy = NULL;
 	va->line = NULL;
+	va->count = 1;
+	va->movement = 0;
 	read_map(av, va);
 	stock_p_and_e(va);
 	check_path(va, va->y_p, va->x_p);

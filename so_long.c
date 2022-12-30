@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 09:56:19 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:00:10 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ void	creat_map(t_var *va, void *player)
 
 void	move(int y, int x, t_var *va, void *player)
 {
+	if (va->str[va->y_p - y][va->x_p - x] == 'C')
+		va->coin--;
+	if (va->str[va->y_p - y][va->x_p - x] == 'E' && va->coin != 0)
+		return ;
+	if (va->str[va->y_p - y][va->x_p - x] == 'E')
+	{
+		ft_putstr_fd("\n(: ~{ u win }~ :)", 1);
+		va->count = 0;
+	}
 	va->str[va->y_p -= y][va->x_p -= x] = 'P';
 	va->str[va->y_p + y][va->x_p + x] = '0';
 	creat_map(va, player);
@@ -46,21 +55,28 @@ void	move(int y, int x, t_var *va, void *player)
 int	movement(int key, t_var *va)
 {
 	(void)va;
-	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1')
-		&& (va->str[va->y_p - 1][va->x_p] != 'E' /*&& va->c != 0*/))
+	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1' && va->count != 0))
+	{
+		ft_putnbr_fd(va->movement += 1, 1);
 		move(1, 0, va, va->vod.img_up);
-	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1')
-		&& (va->str[va->y_p + 1][va->x_p] != 'E' /*&& va->c != 0*/))
+	}
+	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1' && va->count != 0))
+	{
+		ft_putnbr_fd(va->movement += 1, 1);
 		move(-1, 0, va, va->vod.img_down);
-	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1')
-		&& (va->str[va->y_p][va->x_p - 1] != 'E' /*&& va->c != 0*/))
+	}
+	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1' && va->count != 0))
+	{
+		ft_putnbr_fd(va->movement += 1, 1);
 		move(0, 1, va, va->vod.img_left);
-	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1')
-		&& (va->str[va->y_p][va->x_p + 1] != 'E' /*&& va->c != 0*/))
+	}
+	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1' && va->count != 0))
+	{
+		ft_putnbr_fd(va->movement += 1, 1);
 		move(0, -1, va, va->vod.img_right);
+	}
 	else if (key == 53)
 		exit(0); // need to free all
-	ft_putnbr_fd(key, 1);
 	return (0);
 }
 

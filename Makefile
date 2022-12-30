@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2022/12/29 15:54:43 by zouaraqa         ###   ########.fr        #
+#    Updated: 2022/12/30 10:41:01 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = 	so_long.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		utils3.c \
-		utils4.c
+		utils4.c \
+		utils5.c
 OBJ = $(SRC:.c=.o)
 
 %.o : %.c

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 15:37:55 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 09:58:25 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:38:56 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,21 @@ void	creat_image_path(t_var *va)
 		&va->width, &va->hight);
 }
 
-void	ft_putchar_fd(char c, int fd)
+int	compare(char **av, char *str)
 {
-	write(fd, &c, 1);
-}
+	int	i;
+	int	y;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	else if (n < 0)
+	i = 0;
+	y = 0;
+	while (av[1][i] != str[0])
+		i++;
+	while (av[1][i] && str[y] && av[1][i] == str[y])
 	{
-		ft_putchar_fd('-', fd);
-		n *= -1;
-		ft_putnbr_fd(n, fd);
+		i++;
+		y++;
 	}
-	else if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-	else
-		ft_putchar_fd(n + 48, fd);
+	if (!av[1][i] && !str[y])
+		return (-1);
+	return (1);
 }
