@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 18:08:56 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 19:27:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,38 @@ int	movement(int key, t_var *va)
 	return (0);
 }
 
+int	animation(t_var *va)
+{
+	static int	n;
+
+	n = 10;
+		// if (n++ < 10)
+		// 	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_1, va->x_e *80, va->y_e*80);
+		if (n++ >= 10 && n <= 20)
+			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_2, va->x_e*80, va->y_e*80);
+		if (n++ >= 20 && n <= 30)
+			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_3, va->x_e*80, va->y_e*80);
+		if (n++ >= 30 && n <= 40)
+			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_4, va->x_e*80, va->y_e*80);
+		if (n++ >= 40 && n <= 50)
+			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_5, va->x_e*80, va->y_e*80);
+		if (n++ >= 50 && n <= 60)
+			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_6, va->x_e*80, va->y_e*80);
+	return (0);
+}
+
 void	start_everything(t_var *va)
 {
 	va->mlx_ptr = mlx_init();
 	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80, "so_long");
 	creat_image_path(va);
+	
+	creat_anim_path(va);
+	
 	creat_map(va, va->vod.img_down);
 	mlx_hook(va->win_ptr, 2, 0, movement, va);
 	mlx_hook(va->win_ptr, 17, 0, ft_close, va);
+	mlx_loop_hook(va->mlx_ptr, animation, va);
 	mlx_loop(va->mlx_ptr);
 }
 
