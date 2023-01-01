@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 09:52:58 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 10:01:55 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,25 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 void	check_path(t_var *va, int y, int x)
 {
 	if (va->cpy[y][x + 1] != '1' && va->cpy[y][x + 1] != 'X'
-		&& va->cpy[y][x - 1] != 'E')
+		/*&& va->cpy[y][x - 1] != 'E'*/)
 	{
 		va->cpy[y][x + 1] = 'X';
 		check_path(va, y, x + 1);
 	}
 	if (va->cpy[y - 1][x] != '1' && va->cpy[y -1][x] != 'X'
-		&& va->cpy[y -1][x] != 'E')
+		/*&& va->cpy[y -1][x] != 'E'*/)
 	{
 		va->cpy[y - 1][x] = 'X';
 		check_path(va, y - 1, x);
 	}
 	if (va->cpy[y][x - 1] != '1' && va->cpy[y][x - 1] != 'X'
-		&& va->cpy[y][x - 1] != 'E')
+		/*&& va->cpy[y][x - 1] != 'E'*/)
 	{
 		va->cpy[y][x - 1] = 'X';
 		check_path(va, y, x - 1);
 	}
 	if (va->cpy[y + 1][x] != '1' && va->cpy[y + 1][x] != 'X'
-		&& va->cpy[y + 1][x] != 'E')
+		/*&& va->cpy[y + 1][x] != 'E'*/)
 	{
 		va->cpy[y + 1][x] = 'X';
 		check_path(va, y + 1, x);
@@ -101,6 +101,9 @@ void	check_cpy(t_var *va)
 		}
 		va->j++;
 	}
+	// va->j = 0;
+	// while(va->j < va->y)
+	// 	printf("%s\n",va->cpy[va->j++]);
 	if (va->p != 0 || va->c != 0 || va->e != 0)
 		exit_plus_error(va);
 }

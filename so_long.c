@@ -6,49 +6,27 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 11:00:10 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 10:42:52 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	creat_map(t_var *va, void *player)
-{
-	va->j = 0;
-	while (va->j < va->y)
-	{
-		va->i = 0;
-		while (va->str[va->j][va->i])
-		{
-			if (va->str[va->j][va->i] == 'P')
-				put_image(va, player, va->i, va->j);
-			else if (va->str[va->j][va->i] == '0')
-				put_image(va, va->vod.img_ground, va->i, va->j);
-			else if (va->str[va->j][va->i] == '1')
-				put_image(va, va->vod.img_wall, va->i, va->j);
-			else if (va->str[va->j][va->i] == 'E')
-				put_image(va, va->vod.img_exit, va->i, va->j);
-			else if (va->str[va->j][va->i] == 'C')
-				put_image(va, va->vod.img_coin, va->i, va->j);
-		va->i++;
-		}
-		va->j++;
-	}
-}
-
 void	move(int y, int x, t_var *va, void *player)
 {
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
-	if (va->str[va->y_p - y][va->x_p - x] == 'E' && va->coin != 0)
-		return ;
-	if (va->str[va->y_p - y][va->x_p - x] == 'E')
+	if (va->str[va->y_p - y][va->x_p - x] == 'E' && va->coin == 0)
 	{
 		ft_putstr_fd("\n(: ~{ u win }~ :)", 1);
+		mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->vod.img_win, 0, 0);
 		va->count = 0;
+		return ;
 	}
 	va->str[va->y_p -= y][va->x_p -= x] = 'P';
 	va->str[va->y_p + y][va->x_p + x] = '0';
+	if (va->str[va->y_p][va->x_p] != va->str[va->y_e][va->x_e])
+		va->str[va->y_e][va->x_e] = 'E';
 	creat_map(va, player);
 }
 
@@ -76,7 +54,11 @@ int	movement(int key, t_var *va)
 		move(0, -1, va, va->vod.img_right);
 	}
 	else if (key == 53)
+	{
+		ft_free(va, va->str);
+		mlx_destroy_window(va->mlx_ptr, va->win_ptr);
 		exit(0); // need to free all
+	}
 	return (0);
 }
 

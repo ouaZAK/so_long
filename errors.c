@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 10:56:43 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 10:34:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	read_map(char **av, t_var *va)
 	{
 		if (*tmp != '\n' && *tmp != '\0') //segfault cuz too many new line 
 			va->y++;
-		free(tmp);
 		va->line = ft_strjoin(va->line, tmp);
+		free(tmp);
 		tmp = get_next_line(va->fd);
 	}
 	check_pec01(va);
@@ -96,7 +96,7 @@ void	stock_p_and_e(t_var *va)
 			else if (va->str[va->j][va->i] == 'E')
 			{
 				va->x_e = va->i;
-				va->y_e = va->y;
+				va->y_e = va->j;
 			}
 			else if (va->str[va->j][va->i] == 'C')
 				va->coin++;

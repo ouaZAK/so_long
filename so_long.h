@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 10:56:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 10:41:10 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_voides{
 	void	*img_coin;
 	void	*img_exit;
 	void	*img_ground;
+	void	*img_win;
 }t_voids;
 
 typedef struct s_var{
@@ -73,6 +74,8 @@ int		ft_close(int key, t_var *va);
 void	put_image(t_var *va, void *img, int x, int y);
 void	creat_image_path(t_var *va);
 int		compare(char **av, char *str);
+void	wall_or_fire(t_var *va, int j, int i);
+void	creat_map(t_var *va, void *player);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
