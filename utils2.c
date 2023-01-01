@@ -1,16 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils5.c                                           :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 10:38:39 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 10:39:02 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 15:55:01 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	compare(char **av, char *str)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	y = 0;
+	if (av[1][i] == '.')
+		i++;
+	while (av[1][i] != str[0])
+		i++;
+	while (av[1][i] && str[y] && av[1][i] == str[y])
+	{
+		i++;
+		y++;
+	}
+	if (!av[1][i] && !str[y])
+		return (-1);
+	return (1);
+}
 
 void	ft_putstr_fd(char *s, int fd)
 {

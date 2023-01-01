@@ -5,47 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2022/12/30 11:29:44 by zouaraqa         ###   ########.fr       */
+/*   Created: 2022/12/26 16:37:32 by zouaraqa          #+#    #+#             */
+/*   Updated: 2023/01/01 15:00:13 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	wall_or_fire(t_var *va, int j, int i)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (j == 0)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else if (i == 0)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else if (i == va->x - 1)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else if (j == va->y - 1)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else
-		put_image(va, va->vod.img_wall, va->i, va->j);
+	size_t	i;
+	void	*cal;
+
+	i = 0;
+	cal = malloc(size * count);
+	if (!cal)
+		return (0);
+	while (i < size * count)
+	{
+		((unsigned char *)cal)[i] = '\0';
+		i++;
+	}
+	return ((void *)cal);
 }
 
-void	creat_map(t_var *va, void *player)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	va->j = 0;
-	while (va->j < va->y)
+	size_t	i;
+
+	i = -1;
+	if (!dst && !src)
+		return (0);
+	if (src >= dst)
+		while (++i < len)
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+	else
+		while (len--)
+			*(((unsigned char *)dst) + len) = *(((unsigned char *)src) + len);
+	return (dst);
+}
+
+static int	word_count(char *str, char c)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
 	{
-		va->i = 0;
-		while (va->str[va->j][va->i])
-		{
-			if (va->str[va->j][va->i] == 'P')
-				put_image(va, player, va->i, va->j);
-			else if (va->str[va->j][va->i] == 'E')
-				put_image(va, va->vod.img_exit, va->i, va->j);
-			else if (va->str[va->j][va->i] == 'C')
-				put_image(va, va->vod.img_coin, va->i, va->j);
-			else if (va->str[va->j][va->i] == '0')
-				put_image(va, va->vod.img_ground, va->i, va->j);
-			else if (va->str[va->j][va->i] == '1')
-				wall_or_fire(va, va->j, va->i);
-		va->i++;
-		}
-		va->j++;
+		while (*str && *str == c)
+			str++;
+		if (str)
+			count++;
+		while (*str && *str != c)
+			str++;
 	}
+	return (count);
+}
+
+static char	**word_len(char *s, char c, char **str)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (*s)
+	{
+		j = 0;
+		while (*s && *s == c)
+			s++;
+		while (s[j] && s[j] != c)
+			j++;
+		if (*s)
+		{
+			str[i] = (char *)ft_calloc(j + 1, sizeof(char));
+			ft_memmove(str[i], s, j);
+			i++;
+		}
+		while (*s && *s != c)
+			s++;
+	}
+	return (str);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		nbw;
+	char	**str;
+
+	if (!s)
+		return (0);
+	nbw = word_count((char *)s, c);
+	str = (char **)ft_calloc(nbw + 1, sizeof(char *));
+	if (!str)
+		return (0);
+	str = word_len((char *)s, c, str);
+	return (str);
 }

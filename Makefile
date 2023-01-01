@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2022/12/30 11:30:15 by zouaraqa         ###   ########.fr        #
+#    Updated: 2023/01/01 14:57:37 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,10 @@ SRC = 	so_long.c \
 		errors2.c \
 		get_next_line.c \
 		get_next_line_utils.c \
+		creat_map.c \
 		utils1.c \
-		utils3.c \
-		utils4.c \
-		utils5.c
+		utils2.c \
+		exit_destroy.c
 OBJ = $(SRC:.c=.o)
 
 %.o : %.c

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 10:41:10 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/01 15:38:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ void	*ft_calloc(size_t count, size_t size);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_free(t_var *va, char **str);
-void	exit_plus_error(t_var *va);
+void	exit_plus_error();
 char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
-int		ft_close(int key, t_var *va);
+int		ft_close(t_var *va);
 void	put_image(t_var *va, void *img, int x, int y);
 void	creat_image_path(t_var *va);
 int		compare(char **av, char *str);
 void	wall_or_fire(t_var *va, int j, int i);
 void	creat_map(t_var *va, void *player);
+void 	exit_plus_destroy(t_var *va);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);

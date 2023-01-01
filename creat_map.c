@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils4.c                                           :+:      :+:    :+:   */
+/*   creat_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 15:37:55 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 10:56:21 by zouaraqa         ###   ########.fr       */
+/*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
+/*   Updated: 2023/01/01 14:39:54 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_close(int key, t_var *va)
-{
-	(void)va;
-	(void)key;
-	// ft_free(va, va->str);
-	// mlx_destroy_window(va->mlx_ptr, va->win_ptr);
-	exit(0);
-	return (0);
-}
-
 void	put_image(t_var *va, void *img, int x, int y)
 {
 	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, img, x * 80, y * 80);
 }
-
 
 void	creat_image_path(t_var *va)
 {
@@ -52,21 +41,40 @@ void	creat_image_path(t_var *va)
 		&va->width, &va->hight);
 }
 
-int	compare(char **av, char *str)
+void	wall_or_fire(t_var *va, int j, int i)
 {
-	int	i;
-	int	y;
+	if (j == 0)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else if (i == 0)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else if (i == va->x - 1)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else if (j == va->y - 1)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else
+		put_image(va, va->vod.img_wall, va->i, va->j);
+}
 
-	i = 0;
-	y = 0;
-	while (av[1][i] != str[0])
-		i++;
-	while (av[1][i] && str[y] && av[1][i] == str[y])
+void	creat_map(t_var *va, void *player)
+{
+	va->j = 0;
+	while (va->j < va->y)
 	{
-		i++;
-		y++;
+		va->i = 0;
+		while (va->str[va->j][va->i])
+		{
+			if (va->str[va->j][va->i] == 'P')
+				put_image(va, player, va->i, va->j);
+			else if (va->str[va->j][va->i] == 'E')
+				put_image(va, va->vod.img_exit, va->i, va->j);
+			else if (va->str[va->j][va->i] == 'C')
+				put_image(va, va->vod.img_coin, va->i, va->j);
+			else if (va->str[va->j][va->i] == '0')
+				put_image(va, va->vod.img_ground, va->i, va->j);
+			else if (va->str[va->j][va->i] == '1')
+				wall_or_fire(va, va->j, va->i);
+		va->i++;
+		}
+		va->j++;
 	}
-	if (!av[1][i] && !str[y])
-		return (-1);
-	return (1);
 }
