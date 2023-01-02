@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 19:27:35 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:11:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,36 @@ void	move(int y, int x, t_var *va, void *player)
 		va->str[va->y_e][va->x_e] = 'E';
 	creat_map(va, player);
 	if (va->str[va->y_p][va->x_p] == va->str[va->y_e][va->x_e] && va->coin == 0)
-	{
-		ft_putstr_fd("\n(: ~{ u win }~ :)", 1);
-		mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->vod.img_win, 0, 0);
 		va->count = 0;
-	}
+}
+
+void	print_string(t_var *va)
+{
+	va->movement += 1;
+	mlx_string_put(va->mlx_ptr, va->win_ptr, 20 , va->y * 80 + 10, 0xFFFFFF, \
+		ft_strjoin(ft_strdup("movement = "),ft_itoa(va->movement)));
 }
 
 int	movement(int key, t_var *va)
 {
 	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1' && va->count != 0))
 	{
-		ft_putnbr_fd(va->movement += 1, 1);
+		print_string(va);
 		move(1, 0, va, va->vod.img_up);
 	}
 	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1' && va->count != 0))
 	{
-		ft_putnbr_fd(va->movement += 1, 1);
+		print_string(va);
 		move(-1, 0, va, va->vod.img_down);
 	}
 	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1' && va->count != 0))
 	{
-		ft_putnbr_fd(va->movement += 1, 1);
+		print_string(va);
 		move(0, 1, va, va->vod.img_left);
 	}
 	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1' && va->count != 0))
 	{
-		ft_putnbr_fd(va->movement += 1, 1);
+		print_string(va);
 		move(0, -1, va, va->vod.img_right);
 	}
 	else if (key == 53)
@@ -56,35 +59,43 @@ int	movement(int key, t_var *va)
 	return (0);
 }
 
+void	creat_animation(t_var *va, void *anim_path)
+{
+	va->vod.img_fire = anim_path;
+	creat_map2(va);
+}
+
 int	animation(t_var *va)
 {
 	static int	n;
 
-	n = 10;
-		// if (n++ < 10)
-		// 	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_1, va->x_e *80, va->y_e*80);
-		if (n++ >= 10 && n <= 20)
-			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_2, va->x_e*80, va->y_e*80);
-		if (n++ >= 20 && n <= 30)
-			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_3, va->x_e*80, va->y_e*80);
-		if (n++ >= 30 && n <= 40)
-			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_4, va->x_e*80, va->y_e*80);
-		if (n++ >= 40 && n <= 50)
-			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_5, va->x_e*80, va->y_e*80);
-		if (n++ >= 50 && n <= 60)
-			mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->anim.anim_6, va->x_e*80, va->y_e*80);
-	return (0);
+		if (n < 10)
+			creat_animation(va, va->anim.anim_1);
+		else if (n >= 10 && n < 20)
+			creat_animation(va, va->anim.anim_2);
+		else if (n >= 20 && n < 30)
+			creat_animation(va, va->anim.anim_3);
+		else if (n >= 30 && n < 40)
+			creat_animation(va, va->anim.anim_4);
+		else if (n >= 40 && n < 50)
+			creat_animation(va, va->anim.anim_5);
+		else if (n >= 50 && n < 60)
+			creat_animation(va, va->anim.anim_6);
+		else if (n > 60)
+			n = 1;
+		n++;
+		return (0);
 }
 
 void	start_everything(t_var *va)
 {
 	va->mlx_ptr = mlx_init();
-	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80, "so_long");
+	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80 + 30, "so_long");
 	creat_image_path(va);
-	
 	creat_anim_path(va);
 	
 	creat_map(va, va->vod.img_down);
+	
 	mlx_hook(va->win_ptr, 2, 0, movement, va);
 	mlx_hook(va->win_ptr, 17, 0, ft_close, va);
 	mlx_loop_hook(va->mlx_ptr, animation, va);

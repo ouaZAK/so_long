@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 19:04:43 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:22:59 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_voides{
 	void	*img_exit;
 	void	*img_ground;
 	void	*img_win;
+	void	*img_x;
 }t_voids;
 
 typedef struct s_anim{
@@ -63,6 +64,7 @@ typedef struct s_var{
 	int			p;
 	int			e;
 	int			c;
+	int			X;
 	int			movement;
 	int			count;
 	int			coin;
@@ -89,8 +91,11 @@ void	creat_map(t_var *va, void *player);
 void 	exit_plus_destroy(t_var *va);
 void	creat_anim_path(t_var *va);
 int		animation(t_var *va);
+void	creat_map2(t_var *va);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
+char	*ft_itoa(int n);
+char	*ft_strdup(const char *s1);
 #endif

@@ -6,20 +6,15 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 18:08:38 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:30:55 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	put_image(t_var *va, void *img, int x, int y)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, img, x * 80, y * 80);
 }
 
 void	ft_free(t_var *va, char **str)

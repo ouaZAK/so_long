@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 18:08:33 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:27:51 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	check_pec01(t_var *va)
 	va->p = 0;
 	va->c = 0;
 	va->e = 0;
+	va->X = 0;
 	va->i = 0;
 	while (va->line[va->i])
 	{
@@ -42,13 +43,16 @@ void	check_pec01(t_var *va)
 			va->c++;
 		else if (va->line[va->i] == 'E')
 			va->e++;
+		else if (va->line[va->i] == 'X')
+			va->X++;
 		else if (va->line[va->i] != 'E' && va->line[va->i] != 'P'
 			&& va->line[va->i] != 'C' && va->line[va->i] != '0'
-			&& va->line[va->i] != '1' && va->line[va->i] != '\n')
+			&& va->line[va->i] != '1' && va->line[va->i] != '\n'
+			&& va->line[va->i] != 'X')
 			exit_plus_error();
 		va->i++;
 	}
-	if (va->p != 1 || va->e != 1 || va->c < 1)
+	if (va->p != 1 || va->e != 1 || va->c < 1 || va->X < 1)
 		exit_plus_error();
 }
 
