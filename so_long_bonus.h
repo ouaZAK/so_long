@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 11:57:11 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:34:24 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_var{
 	int			p;
 	int			e;
 	int			c;
-	int			X;
+	int			xcount;
 	int			movement;
 	int			count;
 	int			coin;
@@ -89,7 +89,7 @@ void	creat_image_path(t_var *va);
 int		compare(char **av, char *str);
 void	wall_or_fire(t_var *va, int j, int i);
 void	creat_map(t_var *va, void *player);
-void 	exit_plus_destroy(t_var *va);
+void	exit_plus_destroy(t_var *va);
 void	creat_anim_path(t_var *va);
 int		animation(t_var *va);
 void	creat_map2(t_var *va);

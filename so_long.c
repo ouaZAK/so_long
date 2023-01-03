@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 15:40:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:06:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	move(int y, int x, t_var *va, void *player)
 {
+	ft_putnbr_fd(va->movement += 1, 1);
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
-	va->str[va->y_p -= y][va->x_p -= x] = 'P';
+	va->str[va->y_p - y][va->x_p - x] = 'P';
+	va->x_p -= x;
+	va->y_p -= y;
 	va->str[va->y_p + y][va->x_p + x] = '0';
 	if (va->str[va->y_p][va->x_p] != va->str[va->y_e][va->x_e])
 		va->str[va->y_e][va->x_e] = 'E';
@@ -24,34 +27,26 @@ void	move(int y, int x, t_var *va, void *player)
 	if (va->str[va->y_p][va->x_p] == va->str[va->y_e][va->x_e] && va->coin == 0)
 	{
 		ft_putstr_fd("\n(: ~{ u win }~ :)", 1);
-		mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, va->vod.img_win, 0, 0);
+		mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, \
+			va->vod.img_win, 0, 0);
 		va->count = 0;
 	}
 }
 
 int	movement(int key, t_var *va)
 {
-	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1' && va->count != 0))
+	if (va->count != 0)
 	{
-		ft_putnbr_fd(va->movement += 1, 1);
-		move(1, 0, va, va->vod.img_up);
+		if (key == 13 && va->str[va->y_p - 1][va->x_p] != '1')
+			move(1, 0, va, va->vod.img_up);
+		else if (key == 1 && va->str[va->y_p + 1][va->x_p] != '1')
+			move(-1, 0, va, va->vod.img_down);
+		else if (key == 0 && va->str[va->y_p][va->x_p - 1] != '1')
+			move(0, 1, va, va->vod.img_left);
+		else if (key == 2 && va->str[va->y_p][va->x_p + 1] != '1')
+			move(0, -1, va, va->vod.img_right);
 	}
-	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1' && va->count != 0))
-	{
-		ft_putnbr_fd(va->movement += 1, 1);
-		move(-1, 0, va, va->vod.img_down);
-	}
-	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1' && va->count != 0))
-	{
-		ft_putnbr_fd(va->movement += 1, 1);
-		move(0, 1, va, va->vod.img_left);
-	}
-	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1' && va->count != 0))
-	{
-		ft_putnbr_fd(va->movement += 1, 1);
-		move(0, -1, va, va->vod.img_right);
-	}
-	else if (key == 53)
+	if (key == 53)
 		exit_plus_destroy(va);
 	return (0);
 }
@@ -59,7 +54,8 @@ int	movement(int key, t_var *va)
 void	start_everything(t_var *va)
 {
 	va->mlx_ptr = mlx_init();
-	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80, "so_long");
+	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, \
+		va->y * 80, "so_long");
 	creat_image_path(va);
 	creat_map(va, va->vod.img_down);
 	mlx_hook(va->win_ptr, 2, 0, movement, va);

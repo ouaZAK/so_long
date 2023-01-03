@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 11:51:35 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:16:20 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	creat_image_path(t_var *va)
 		&va->width, &va->hight);
 	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/win.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_lose = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/lose.xpm", \
+	va->vod.img_lose = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/lo.xpm", \
 		&va->width, &va->hight);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/02 09:17:13 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:17:52 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ void	put_image(t_var *va, void *img, int x, int y)
 
 void	creat_image_path(t_var *va)
 {
-	va->vod.img_up = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/up.xpm",
+	va->vod.img_up = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/up.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_down = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/down.xpm",
+	va->vod.img_down = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/D.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_right = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/right.xpm",
+	va->vod.img_right = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/R.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_left = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/left.xpm",
+	va->vod.img_left = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/L.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_coin = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/coin.xpm",
+	va->vod.img_coin = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/C.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_exit = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/exit.xpm",
+	va->vod.img_exit = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/E.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/wall.xpm",
+	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/W.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_fire = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/firewall.xpm",
+	va->vod.img_fire = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/F.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/ground.xpm",
+	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/G.xpm", \
 		&va->width, &va->hight);
-	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/win.xpm",
+	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/win.xpm", \
 		&va->width, &va->hight);
 }
 

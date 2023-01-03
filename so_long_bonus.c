@@ -6,19 +6,32 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 11:57:07 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:52:19 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
+void	print_string(t_var *va)
+{
+	free(va->line);
+	va->line = ft_strjoin2(ft_strdup("movement = "), ft_itoa(va->movement));
+	va->movement += 1;
+	mlx_clear_window(va->mlx_ptr, va->win_ptr);
+	mlx_string_put(va->mlx_ptr, va->win_ptr, 20, va->y * 80 + 10, 0xFFFFFF, \
+		va->line);
+}
+
 void	move(int y, int x, t_var *va, void *player)
 {
+	print_string(va);
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
 	if (va->str[va->y_p - y][va->x_p - x] == 'X')
 		va->count = 2;
-	va->str[va->y_p -= y][va->x_p -= x] = 'P';
+	va->str[va->y_p - y][va->x_p - x] = 'P';
+	va->y_p -= y;
+	va->x_p -= x;
 	if (va->str[va->y_p + y][va->x_p + x] != 'X')
 		va->str[va->y_p + y][va->x_p + x] = '0';
 	if (va->str[va->y_p][va->x_p] != va->str[va->y_e][va->x_e])
@@ -28,19 +41,9 @@ void	move(int y, int x, t_var *va, void *player)
 		va->count = 1;
 }
 
-void	print_string(t_var *va)
-{
-	free(va->line);
-	va->line = ft_strjoin2(ft_strdup("movement = "),ft_itoa(va->movement));
-	va->movement += 1;
-	mlx_clear_window(va->mlx_ptr, va->win_ptr);
-	mlx_string_put(va->mlx_ptr, va->win_ptr, 20 , va->y * 80 + 10, 0xFFFFFF, \
-		va->line);
-}
-
 void	move_enemy(t_var *va, int x, int y)
 {
-	static int nbr;
+	static int	nbr;
 
 	if (va->str[y - 1][x] == '1' || va->str[y - 1][x] == 'C' \
 		|| va->str[y - 1][x] == 'E')
@@ -57,7 +60,8 @@ void	move_enemy(t_var *va, int x, int y)
 	if (va->str[y + 1][x] != '1' && va->str[y + 1][x] != 'C' \
 		&& va->str[y + 1][x] != 'E' && nbr == 1)
 	{
-		va->str[va->j += 1][x] = 'X';
+		va->str[va->j + 1][x] = 'X';
+		va->j += 1;
 		va->str[y][x] = '0';
 	}
 }
@@ -81,27 +85,18 @@ void	enemy(t_var *va)
 int	movement(int key, t_var *va)
 {
 	enemy(va);
-	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1' && va->count != 1&& va->count != 2))
+	if (va->count != 1 && va->count != 2)
 	{
-		print_string(va);
-		move(1, 0, va, va->vod.img_up);
+		if (key == 13 && va->str[va->y_p - 1][va->x_p] != '1')
+			move(1, 0, va, va->vod.img_up);
+		else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1'))
+			move(-1, 0, va, va->vod.img_down);
+		else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1'))
+			move(0, 1, va, va->vod.img_left);
+		else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1'))
+			move(0, -1, va, va->vod.img_right);
 	}
-	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1' && va->count != 1&& va->count != 2))
-	{
-		print_string(va);
-		move(-1, 0, va, va->vod.img_down);
-	}
-	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1' && va->count != 1&& va->count != 2))
-	{
-		print_string(va);
-		move(0, 1, va, va->vod.img_left);
-	}
-	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1' && va->count != 1&& va->count != 2))
-	{
-		print_string(va);
-		move(0, -1, va, va->vod.img_right);
-	}
-	else if (key == 53)
+	if (key == 53)
 		exit_plus_destroy(va);
 	return (0);
 }
