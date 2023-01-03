@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2023/01/02 11:58:01 by zouaraqa         ###   ########.fr        #
+#    Updated: 2023/01/03 15:04:03 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_BONUS =	so_long_bonus.c \
 			utils2_bonus.c \
 			utils3_bonus.c \
 			exit_destroy_bonus.c \
+			movement_bonus.c \
 			get_next_line.c \
 			get_next_line_utils.c
 OBJ_BONUS = $(SRC_BONUS:.c=.o)

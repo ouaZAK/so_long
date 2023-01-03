@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 12:34:24 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:06:53 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ void	exit_plus_destroy(t_var *va);
 void	creat_anim_path(t_var *va);
 int		animation(t_var *va);
 void	creat_map2(t_var *va);
+int		movement(int key, t_var *va);
+void	print_string(t_var *va);
+void	move(int y, int x, t_var *va, void *player);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
