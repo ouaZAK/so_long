@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 09:06:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:51:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	creat_image_path(t_var *va)
 	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/G.xpm", \
 		&va->width, &va->hight);
 	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/win.xpm", \
+		&va->width, &va->hight);
+	va->vod.img_lose = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/lose.xpm", \
 		&va->width, &va->hight);
 }
 
@@ -101,9 +103,12 @@ void	creat_map2(t_var *va)
 		va->i = 0;
 		while (va->str[va->j][va->i])
 		{
-			if (va->count == 0)
+			if (va->count == 1)
 				mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, \
 					va->vod.img_win, 0, 0);
+			if (va->count == 2)
+				mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, \
+					va->vod.img_lose, 0, 0);
 			if (va->str[va->j][va->i] == '1')
 				fire_imgs(va, va->j, va->i);
 		va->i++;

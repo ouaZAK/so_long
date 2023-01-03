@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 11:32:24 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:57:11 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_voides{
 	void	*img_exit;
 	void	*img_ground;
 	void	*img_win;
+	void	*img_lose;
 	void	*img_x;
 }t_voids;
 

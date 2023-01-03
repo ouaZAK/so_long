@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 11:27:44 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:57:07 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move(int y, int x, t_var *va, void *player)
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
 	if (va->str[va->y_p - y][va->x_p - x] == 'X')
-		va->count = 0;
+		va->count = 2;
 	va->str[va->y_p -= y][va->x_p -= x] = 'P';
 	if (va->str[va->y_p + y][va->x_p + x] != 'X')
 		va->str[va->y_p + y][va->x_p + x] = '0';
@@ -25,7 +25,7 @@ void	move(int y, int x, t_var *va, void *player)
 		va->str[va->y_e][va->x_e] = 'E';
 	creat_map(va, player);
 	if (va->str[va->y_p][va->x_p] == va->str[va->y_e][va->x_e] && va->coin == 0)
-		va->count = 0;
+		va->count = 1;
 }
 
 void	print_string(t_var *va)
@@ -42,16 +42,20 @@ void	move_enemy(t_var *va, int x, int y)
 {
 	static int nbr;
 
-	if (va->str[y - 1][x] == '1' || va->str[y - 1][x] == 'C' || va->str[y - 1][x] == 'E')
+	if (va->str[y - 1][x] == '1' || va->str[y - 1][x] == 'C' \
+		|| va->str[y - 1][x] == 'E')
 		nbr = 1;
-	if (va->str[y + 1][x] == '1' || va->str[y + 1][x] == 'C' || va->str[y + 1][x] == 'E')
+	if (va->str[y + 1][x] == '1' || va->str[y + 1][x] == 'C' \
+		|| va->str[y + 1][x] == 'E')
 		nbr = 0;
-	if (va->str[y - 1][x] != '1' && va->str[y - 1][x] != 'C' && va->str[y - 1][x] != 'E' && nbr == 0)
+	if (va->str[y - 1][x] != '1' && va->str[y - 1][x] != 'C' \
+		&& va->str[y - 1][x] != 'E' && nbr == 0)
 	{
 		va->str[y - 1][x] = 'X';
 		va->str[y][x] = '0';
 	}
-	if (va->str[y + 1][x] != '1' && va->str[y + 1][x] != 'C' && va->str[y + 1][x] != 'E' && nbr == 1)
+	if (va->str[y + 1][x] != '1' && va->str[y + 1][x] != 'C' \
+		&& va->str[y + 1][x] != 'E' && nbr == 1)
 	{
 		va->str[va->j += 1][x] = 'X';
 		va->str[y][x] = '0';
@@ -77,22 +81,22 @@ void	enemy(t_var *va)
 int	movement(int key, t_var *va)
 {
 	enemy(va);
-	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1' && va->count != 0))
+	if ((key == 13 && va->str[va->y_p - 1][va->x_p] != '1' && va->count != 1&& va->count != 2))
 	{
 		print_string(va);
 		move(1, 0, va, va->vod.img_up);
 	}
-	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1' && va->count != 0))
+	else if ((key == 1 && va->str[va->y_p + 1][va->x_p] != '1' && va->count != 1&& va->count != 2))
 	{
 		print_string(va);
 		move(-1, 0, va, va->vod.img_down);
 	}
-	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1' && va->count != 0))
+	else if ((key == 0 && va->str[va->y_p][va->x_p - 1] != '1' && va->count != 1&& va->count != 2))
 	{
 		print_string(va);
 		move(0, 1, va, va->vod.img_left);
 	}
-	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1' && va->count != 0))
+	else if ((key == 2 && va->str[va->y_p][va->x_p + 1] != '1' && va->count != 1&& va->count != 2))
 	{
 		print_string(va);
 		move(0, -1, va, va->vod.img_right);
@@ -133,11 +137,15 @@ int	animation(t_var *va)
 void	start_everything(t_var *va)
 {
 	va->mlx_ptr = mlx_init();
-	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, va->y * 80 + 30, "so_long");
+	if (!va->mlx_ptr)
+		exit_plus_error();
+	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, \
+		va->y * 80 + 30, "so_long");
+	if (!va->win_ptr)
+		exit_plus_error();
 	creat_image_path(va);
 	creat_anim_path(va);
 	creat_map(va, va->vod.img_down);
-	
 	mlx_hook(va->win_ptr, 2, 0, movement, va);
 	mlx_hook(va->win_ptr, 17, 0, ft_close, va);
 	mlx_loop_hook(va->mlx_ptr, animation, va);
@@ -154,6 +162,8 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	va = malloc(sizeof(t_var));
+	if (!va)
+		return (0);
 	check_errors(av, va);
 	start_everything(va);
 }

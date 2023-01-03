@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/02 12:27:51 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:48:01 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	check_errors(char **av, t_var *va)
 	va->str = NULL;
 	va->cpy = NULL;
 	va->line = NULL;
-	va->count = 1;
+	va->count = 0;
 	va->movement = 0;
 	read_map(av, va);
 	stock_p_and_e(va);
