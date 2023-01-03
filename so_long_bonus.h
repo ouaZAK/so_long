@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/02 12:22:59 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:32:24 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	*ft_calloc(size_t count, size_t size);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_free(t_var *va, char **str);
-void	exit_plus_error();
+void	exit_plus_error(void);
 char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
@@ -98,4 +98,6 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s1);
+char	*ft_strjoin2(char *s1, char *s2);
+
 #endif
