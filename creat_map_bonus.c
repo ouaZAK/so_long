@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 13:16:20 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:41:33 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	creat_image_path(t_var *va)
 		&va->width, &va->hight);
 	va->vod.img_exit = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/E.xpm", \
 		&va->width, &va->hight);
+	va->vod.img_closed = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/cl.xpm", \
+		&va->width, &va->hight);
 	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/W.xpm", \
 		&va->width, &va->hight);
 	va->vod.img_fire = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/F.xpm", \
@@ -36,11 +38,13 @@ void	creat_image_path(t_var *va)
 		&va->width, &va->hight);
 	va->vod.img_lose = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/lo.xpm", \
 		&va->width, &va->hight);
+	va->vod.img_enemy = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/NM.xpm", \
+		&va->width, &va->hight);
 }
 
 void	creat_anim_path(t_var *va)
 {
-	va->vod.img_x = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/up.xpm", \
+	va->vod.img_x = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/NM.xpm", \
 		&va->width, &va->hight);
 	va->anim.anim_1 = mlx_xpm_file_to_image(va->mlx_ptr, "./textures/1.xpm", \
 		&va->width, &va->hight);
@@ -56,7 +60,7 @@ void	creat_anim_path(t_var *va)
 		&va->width, &va->hight);
 }
 
-void	fire_imgs(t_var *va, int j, int i)
+void	water_img(t_var *va, int j, int i)
 {
 	if (j == 0)
 		put_image(va, va->vod.img_fire, va->i, va->j);
@@ -66,6 +70,14 @@ void	fire_imgs(t_var *va, int j, int i)
 		put_image(va, va->vod.img_fire, va->i, va->j);
 	else if (j == va->y - 1)
 		put_image(va, va->vod.img_fire, va->i, va->j);
+}
+
+void	open_or_closedoor(t_var *va)
+{
+	if (va->coin != 0)
+		put_image(va, va->vod.img_closed, va->x_e, va->y_e);
+	else
+		put_image(va, va->vod.img_exit, va->x_e, va->y_e);
 }
 
 void	creat_map(t_var *va, void *player)
@@ -79,7 +91,7 @@ void	creat_map(t_var *va, void *player)
 			if (va->str[va->j][va->i] == 'P')
 				put_image(va, player, va->i, va->j);
 			else if (va->str[va->j][va->i] == 'E')
-				put_image(va, va->vod.img_exit, va->i, va->j);
+				open_or_closedoor(va);
 			else if (va->str[va->j][va->i] == 'C')
 				put_image(va, va->vod.img_coin, va->i, va->j);
 			else if (va->str[va->j][va->i] == '0')
@@ -110,7 +122,7 @@ void	creat_map2(t_var *va)
 				mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, \
 					va->vod.img_lose, 0, 0);
 			if (va->str[va->j][va->i] == '1')
-				fire_imgs(va, va->j, va->i);
+				water_img(va, va->j, va->i);
 		va->i++;
 		}
 		va->j++;
