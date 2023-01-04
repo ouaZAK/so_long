@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 18:16:37 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:38:52 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	move(int y, int x, t_var *va, void *player)
 {
-	ft_putnbr_fd(va->movement += 1, 1);
+	// ft_putnbr_fd(va->movement += 1, 1);
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
 	va->str[va->y_p - y][va->x_p - x] = 'P';
@@ -35,15 +35,16 @@ static void	move(int y, int x, t_var *va, void *player)
 
 static int	movement(int key, t_var *va)
 {
+	ft_putnbr_fd(key,1);
 	if (va->count != 0)
 	{
-		if (key == 13 && va->str[va->y_p - 1][va->x_p] != '1')
+		if ((key == 13 || key == 126) && va->str[va->y_p - 1][va->x_p] != '1')
 			move(1, 0, va, va->vod.img_up);
-		else if (key == 1 && va->str[va->y_p + 1][va->x_p] != '1')
+		else if ((key == 1 || key == 125) && va->str[va->y_p + 1][va->x_p] != '1')
 			move(-1, 0, va, va->vod.img_down);
-		else if (key == 0 && va->str[va->y_p][va->x_p - 1] != '1')
+		else if ((key == 0 || key ==  123) && va->str[va->y_p][va->x_p - 1] != '1')
 			move(0, 1, va, va->vod.img_left);
-		else if (key == 2 && va->str[va->y_p][va->x_p + 1] != '1')
+		else if ((key == 2 || key ==  124) && va->str[va->y_p][va->x_p + 1] != '1')
 			move(0, -1, va, va->vod.img_right);
 	}
 	if (key == 53)
