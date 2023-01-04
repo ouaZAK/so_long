@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:02:10 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 15:10:02 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:44:42 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	move(int y, int x, t_var *va, void *player)
 {
-	print_string(va);
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
 	if (va->str[va->y_p - y][va->x_p - x] == 'X')
@@ -29,6 +28,7 @@ void	move(int y, int x, t_var *va, void *player)
 	creat_map(va, player);
 	if (va->str[va->y_p][va->x_p] == va->str[va->y_e][va->x_e] && va->coin == 0)
 		va->count = 1;
+	print_string(va);
 }
 
 static void	move_enemy(t_var *va, int x, int y)

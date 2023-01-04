@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 15:01:38 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:46:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	print_string(t_var *va)
 	free(va->line);
 	va->line = ft_strjoin2(ft_strdup("movement = "), ft_itoa(va->movement));
 	va->movement += 1;
-	mlx_clear_window(va->mlx_ptr, va->win_ptr);
-	mlx_string_put(va->mlx_ptr, va->win_ptr, 20, va->y * 80 + 10, 0xFFFFFF, \
+	mlx_string_put(va->mlx_ptr, va->win_ptr, 80, 80, 0xFFFFFF, \
 		va->line);
 }
 
@@ -56,7 +55,7 @@ void	start_everything(t_var *va)
 	if (!va->mlx_ptr)
 		exit_plus_error();
 	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, \
-		va->y * 80 + 30, "so_long");
+		va->y * 80, "so_long");
 	if (!va->win_ptr)
 		exit_plus_error();
 	creat_image_path(va);
