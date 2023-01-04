@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 17:41:33 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:21:57 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,7 @@ void	creat_anim_path(t_var *va)
 		&va->width, &va->hight);
 }
 
-void	water_img(t_var *va, int j, int i)
-{
-	if (j == 0)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else if (i == 0)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else if (i == va->x - 1)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-	else if (j == va->y - 1)
-		put_image(va, va->vod.img_fire, va->i, va->j);
-}
-
-void	open_or_closedoor(t_var *va)
+static void	open_or_closedoor(t_var *va)
 {
 	if (va->coin != 0)
 		put_image(va, va->vod.img_closed, va->x_e, va->y_e);
@@ -105,6 +93,18 @@ void	creat_map(t_var *va, void *player)
 		}
 		va->j++;
 	}
+}
+
+static void	water_img(t_var *va, int j, int i)
+{
+	if (j == 0)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else if (i == 0)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else if (i == va->x - 1)
+		put_image(va, va->vod.img_fire, va->i, va->j);
+	else if (j == va->y - 1)
+		put_image(va, va->vod.img_fire, va->i, va->j);
 }
 
 void	creat_map2(t_var *va)

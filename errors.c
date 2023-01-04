@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 14:51:24 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:13:18 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_size_and_walls(t_var *va)
+static int	check_size_and_walls(t_var *va)
 {
 	if (va->x > 32 || va->y > 17)
 		return (1);
@@ -28,7 +28,7 @@ int	check_size_and_walls(t_var *va)
 	return (0);
 }
 
-void	check_pec01(t_var *va)
+static void	check_pec01(t_var *va)
 {
 	va->p = 0;
 	va->c = 0;
@@ -52,7 +52,7 @@ void	check_pec01(t_var *va)
 		exit_plus_error();
 }
 
-void	read_map(char **av, t_var *va)
+static void	read_map(char **av, t_var *va)
 {
 	char	*tmp;
 
@@ -80,7 +80,7 @@ void	read_map(char **av, t_var *va)
 	close(va->fd);
 }
 
-void	stock_p_and_e(t_var *va)
+static void	stock_p_and_e(t_var *va)
 {
 	va->j = 0;
 	va->coin = 0;

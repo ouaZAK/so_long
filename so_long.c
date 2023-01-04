@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/03 13:06:03 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:16:37 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move(int y, int x, t_var *va, void *player)
+static void	move(int y, int x, t_var *va, void *player)
 {
 	ft_putnbr_fd(va->movement += 1, 1);
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
@@ -33,7 +33,7 @@ void	move(int y, int x, t_var *va, void *player)
 	}
 }
 
-int	movement(int key, t_var *va)
+static int	movement(int key, t_var *va)
 {
 	if (va->count != 0)
 	{
