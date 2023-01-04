@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2023/01/03 15:04:03 by zouaraqa         ###   ########.fr        #
+#    Updated: 2023/01/04 19:29:40 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_BONUS =	so_long_bonus.c \
 			errors_bonus.c \
 			errors2_bonus.c \
 			creat_map_bonus.c \
+			creat_path_bonus.c \
 			utils1_bonus.c \
 			utils2_bonus.c \
 			utils3_bonus.c \

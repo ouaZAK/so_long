@@ -6,11 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 11:52:57 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/02 12:30:34 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:01:24 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 17:41:06 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:24:24 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_voides{
 	void	*img_win;
 	void	*img_lose;
 	void	*img_enemy;
-	void	*img_x;
 }t_voids;
 
 typedef struct s_anim{
@@ -103,7 +102,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(char *s1);
 char	*ft_strjoin2(char *s1, char *s2);
 
 #endif
