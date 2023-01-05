@@ -6,11 +6,16 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 19:28:57 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:17:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+static void	put_image(t_var *va, void *img, int x, int y)
+{
+	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, img, x * 80, y * 80);
+}
 
 static void	open_or_closedoor(t_var *va)
 {

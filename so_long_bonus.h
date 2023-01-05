@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 19:24:24 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:19:05 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_anim{
 	void	*anim_2;
 	void	*anim_3;
 	void	*anim_4;
-	void	*anim_5;
-	void	*anim_6;
 }t_anim;
 
 typedef struct s_var{
@@ -75,9 +73,6 @@ typedef struct s_var{
 
 // func
 void	check_errors(char **av, t_var *va);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-void	*ft_calloc(size_t count, size_t size);
-int		ft_strcmp(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_free(t_var *va, char **str);
 void	exit_plus_error(void);
@@ -85,22 +80,14 @@ char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
 int		ft_close(t_var *va);
-void	put_image(t_var *va, void *img, int x, int y);
 void	creat_image_path(t_var *va);
 int		compare(char **av, char *str);
-void	wall_or_fire(t_var *va, int j, int i);
 void	creat_map(t_var *va, void *player);
 void	exit_plus_destroy(t_var *va);
-void	creat_anim_path(t_var *va);
-int		animation(t_var *va);
 void	creat_map2(t_var *va);
 int		movement(int key, t_var *va);
 void	print_string(t_var *va);
-void	move(int y, int x, t_var *va, void *player);
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s1);
 char	*ft_strjoin2(char *s1, char *s2);

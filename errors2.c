@@ -6,24 +6,16 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 10:07:20 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:07:13 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
 void	ft_free(t_var *va, char **str)
 {
+	if (!str)
+		return ;
 	va->j = -1;
 	while (++va->j < va->y)
 		free(str[va->j]);
@@ -37,6 +29,7 @@ char	*get_first_line(char **av, t_var *va, char *tmp)
 	if (!tmp)
 	{
 		free(tmp);
+		free(va);
 		write(1, "Error\n", 6);
 		exit(0);
 	}
@@ -89,5 +82,5 @@ void	check_cpy(t_var *va)
 		va->j++;
 	}
 	if (va->p != 0 || va->c != 0 || va->e != 0)
-		exit_free_all(va);
+		exit_free_all(va, va->str, va->cpy);
 }

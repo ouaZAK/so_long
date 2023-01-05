@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 11:23:37 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:58:32 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	move(int y, int x, t_var *va, void *player)
 	creat_map(va, player);
 	if (va->str[va->y_p][va->x_p] == va->str[va->y_e][va->x_e] && va->coin == 0)
 	{
-		ft_putstr_fd("\n(: ~{ u win }~ :)", 1);
+		write(1, "\n(: ~{ u win }~ :)", 18);
 		mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, \
 			va->vod.img_win, 0, 0);
 		va->count = 0;
@@ -59,11 +59,11 @@ void	start_everything(t_var *va)
 {
 	va->mlx_ptr = mlx_init();
 	if (!va->mlx_ptr)
-		exit_free_str(va);
+		exit_free_all(va, va->str, NULL);
 	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, \
 		va->y * 80, "so_long");
 	if (!va->win_ptr)
-		exit_free_str(va);
+		exit_free_all(va, va->str, NULL);
 	creat_image_path(va);
 	creat_map(va, va->vod.img_down);
 	mlx_hook(va->win_ptr, 2, 0, movement, va);

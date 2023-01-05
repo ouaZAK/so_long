@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:37:32 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/01 15:00:13 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:11:26 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*ft_calloc(size_t count, size_t size)
+static void	*ft_calloc(size_t count, size_t size)
 {
 	size_t	i;
 	void	*cal;
@@ -29,7 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return ((void *)cal);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+static void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	i;
 

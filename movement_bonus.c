@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:02:10 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 11:24:16 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:11:10 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	move(int y, int x, t_var *va, void *player)
+static void	move(int y, int x, t_var *va, void *player)
 {
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
@@ -36,19 +36,19 @@ static void	move_enemy(t_var *va, int x, int y)
 	static int	nbr;
 
 	if (va->str[y - 1][x] == '1' || va->str[y - 1][x] == 'C' \
-		|| va->str[y - 1][x] == 'E')
+		|| va->str[y - 1][x] == 'E' || va->str[y - 1][x] == 'X')
 		nbr = 1;
 	if (va->str[y + 1][x] == '1' || va->str[y + 1][x] == 'C' \
-		|| va->str[y + 1][x] == 'E')
+		|| va->str[y + 1][x] == 'E' || va->str[y + 1][x] == 'X')
 		nbr = 0;
 	if (va->str[y - 1][x] != '1' && va->str[y - 1][x] != 'C' \
-		&& va->str[y - 1][x] != 'E' && nbr == 0)
+		&& va->str[y - 1][x] != 'E' && va->str[y - 1][x] != 'X' && nbr == 0)
 	{
 		va->str[y - 1][x] = 'X';
 		va->str[y][x] = '0';
 	}
 	if (va->str[y + 1][x] != '1' && va->str[y + 1][x] != 'C' \
-		&& va->str[y + 1][x] != 'E' && nbr == 1)
+		&& va->str[y + 1][x] != 'E' && va->str[y + 1][x] != 'X' && nbr == 1)
 	{
 		va->str[va->j + 1][x] = 'X';
 		va->j += 1;

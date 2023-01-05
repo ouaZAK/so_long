@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:13:46 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 11:14:32 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:08:07 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free_up(t_var *va)
 {
 	ft_free(va, va->str);
 	mlx_destroy_image(va->mlx_ptr, va->vod.img_up);
+	free(va);
 	write(1, "Error\n", 6);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 19:17:57 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:13:46 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	creat_animation(t_var *va, void *anim_path)
 	creat_map2(va);
 }
 
-int	animation(t_var *va)
+static int	animation(t_var *va)
 {
 	static int	n;
 
@@ -39,11 +39,7 @@ int	animation(t_var *va)
 		creat_animation(va, va->anim.anim_3);
 	else if (n >= 30 && n < 40)
 		creat_animation(va, va->anim.anim_4);
-	else if (n >= 40 && n < 50)
-		creat_animation(va, va->anim.anim_5);
-	else if (n >= 50 && n < 60)
-		creat_animation(va, va->anim.anim_6);
-	else if (n > 60)
+	else if (n > 40)
 		n = 1;
 	n++;
 	return (0);
@@ -59,7 +55,6 @@ void	start_everything(t_var *va)
 	if (!va->win_ptr)
 		exit_plus_error();
 	creat_image_path(va);
-	creat_anim_path(va);
 	creat_map(va, va->vod.img_down);
 	mlx_hook(va->win_ptr, 2, 0, movement, va);
 	mlx_hook(va->win_ptr, 17, 0, ft_close, va);

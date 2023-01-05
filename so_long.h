@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 11:20:09 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:44:54 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,21 @@ typedef struct s_var{
 
 // func
 void	check_errors(char **av, t_var *va);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-void	*ft_calloc(size_t count, size_t size);
-int		ft_strcmp(char *s1, char *s2);
-char	**ft_split(char const *s, char c);
-void	ft_free(t_var *va, char **str);
-void	exit_free_tmp(t_var *va, char *tmp);
-void	exit_free_line(t_var *va);
-void	exit_free_str(t_var *va);
-void	exit_free_all(t_var *va);
-char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
-int		ft_close(t_var *va);
 void	creat_image_path(t_var *va);
-int		compare(char **av, char *str);
 void	creat_map(t_var *va, void *player);
+char	*get_first_line(char **av, t_var *va, char *tmp);
+void	ft_free(t_var *va, char **str);
+void	exit_free_line(t_var *va, char *tmp);
+void	exit_free_all(t_var *va, char **str, char **cpy);
 void	exit_plus_destroy(t_var *va);
+int		compare(char **av, char *str);
+int		ft_close(t_var *va);
 
-void	ft_putchar_fd(char c, int fd);
+//utils
 void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
+char	**ft_split(char const *s, char c);
 
 //destroy imgs
 void	free_up(t_var *va);

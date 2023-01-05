@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 10:08:26 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:03:22 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	check_pec01(t_var *va)
 		else if (va->line[va->i] != 'E' && va->line[va->i] != 'P'
 			&& va->line[va->i] != 'C' && va->line[va->i] != '0'
 			&& va->line[va->i] != '1' && va->line[va->i] != '\n')
-			exit_free_line(va);
+			exit_free_line(va, NULL);
 		va->i++;
 	}
 	if (va->p != 1 || va->e != 1 || va->c < 1)
-		exit_free_line(va);
+		exit_free_line(va, NULL);
 }
 
 static void	read_map(char **av, t_var *va)
@@ -63,7 +63,7 @@ static void	read_map(char **av, t_var *va)
 	while (tmp)
 	{
 		if (*tmp == '\n')
-			exit_free_tmp(va, tmp);
+			exit_free_line(va, tmp);
 		va->y++;
 		va->line = ft_strjoin(va->line, tmp);
 		free(tmp);
@@ -74,7 +74,7 @@ static void	read_map(char **av, t_var *va)
 	va->cpy = ft_split(va->line, '\n');
 	free(va->line);
 	if (check_size_and_walls(va) == 1)
-		exit_free_all(va);
+		exit_free_all(va, va->str, va->cpy);
 	close(va->fd);
 }
 
@@ -109,6 +109,7 @@ void	check_errors(char **av, t_var *va)
 {
 	if (compare(av, ".ber") == 1)
 	{
+		free(va);
 		write(1, "Error\nonly .ber file >:D\n", 26);
 		exit(0);
 	}

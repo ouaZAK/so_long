@@ -6,19 +6,16 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/02 12:30:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:17:00 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	put_image(t_var *va, void *img, int x, int y)
-{
-	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, img, x * 80, y * 80);
-}
-
 void	ft_free(t_var *va, char **str)
 {
+	if (!str)
+		return ;
 	va->j = -1;
 	while (++va->j < va->y)
 		free(str[va->j]);
