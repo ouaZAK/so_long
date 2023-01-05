@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 18:24:18 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:20:09 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	*ft_calloc(size_t count, size_t size);
 int		ft_strcmp(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_free(t_var *va, char **str);
-void	exit_plus_error(void);
+void	exit_free_tmp(t_var *va, char *tmp);
+void	exit_free_line(t_var *va);
+void	exit_free_str(t_var *va);
+void	exit_free_all(t_var *va);
 char	*get_first_line(char **av, t_var *va, char *tmp);
 void	check_cpy(t_var *va);
 void	check_path(t_var *va, int y, int x);
@@ -79,4 +82,16 @@ void	exit_plus_destroy(t_var *va);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
+
+//destroy imgs
+void	free_up(t_var *va);
+void	free_down(t_var *va);
+void	free_right(t_var *va);
+void	free_left(t_var *va);
+void	free_coin(t_var *va);
+void	free_exit(t_var *va);
+void	free_closed(t_var *va);
+void	free_wall(t_var *va);
+void	free_ground(t_var *va);
+
 #endif

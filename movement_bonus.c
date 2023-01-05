@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:02:10 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 19:51:19 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:24:16 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,17 @@ int	movement(int key, t_var *va)
 	enemy(va);
 	if (va->count != 1 && va->count != 2)
 	{
-		if ((key == 13 || key == 126) && va->str[va->y_p - 1][va->x_p] != '1')
+		if ((key == 13 || key == 126) \
+			&& va->str[va->y_p - 1][va->x_p] != '1')
 			move(1, 0, va, va->vod.img_up);
-		else if ((key == 1 || key == 125) && va->str[va->y_p + 1][va->x_p] != '1')
+		else if ((key == 1 || key == 125) \
+			&& va->str[va->y_p + 1][va->x_p] != '1')
 			move(-1, 0, va, va->vod.img_down);
-		else if ((key == 0 || key ==  123) && va->str[va->y_p][va->x_p - 1] != '1')
+		else if ((key == 0 || key == 123) \
+			&& va->str[va->y_p][va->x_p - 1] != '1')
 			move(0, 1, va, va->vod.img_left);
-		else if ((key == 2 || key ==  124) && va->str[va->y_p][va->x_p + 1] != '1')
+		else if ((key == 2 || key == 124) \
+			&& va->str[va->y_p][va->x_p + 1] != '1')
 			move(0, -1, va, va->vod.img_right);
 	}
 	if (key == 53)

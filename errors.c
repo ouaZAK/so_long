@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 18:13:18 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 10:08:26 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	check_pec01(t_var *va)
 		else if (va->line[va->i] != 'E' && va->line[va->i] != 'P'
 			&& va->line[va->i] != 'C' && va->line[va->i] != '0'
 			&& va->line[va->i] != '1' && va->line[va->i] != '\n')
-			exit_plus_error();
+			exit_free_line(va);
 		va->i++;
 	}
 	if (va->p != 1 || va->e != 1 || va->c < 1)
-		exit_plus_error();
+		exit_free_line(va);
 }
 
 static void	read_map(char **av, t_var *va)
@@ -63,7 +63,7 @@ static void	read_map(char **av, t_var *va)
 	while (tmp)
 	{
 		if (*tmp == '\n')
-			exit_plus_error();
+			exit_free_tmp(va, tmp);
 		va->y++;
 		va->line = ft_strjoin(va->line, tmp);
 		free(tmp);
@@ -72,11 +72,9 @@ static void	read_map(char **av, t_var *va)
 	check_pec01(va);
 	va->str = ft_split(va->line, '\n');
 	va->cpy = ft_split(va->line, '\n');
+	free(va->line);
 	if (check_size_and_walls(va) == 1)
-	{
-		write(1, "Error\nnice try >:D\n", 20);
-		exit(0);
-	}
+		exit_free_all(va);
 	close(va->fd);
 }
 
@@ -123,4 +121,5 @@ void	check_errors(char **av, t_var *va)
 	stock_p_and_e(va);
 	check_path(va, va->y_p, va->x_p);
 	check_cpy(va);
+	ft_free(va, va->cpy);
 }

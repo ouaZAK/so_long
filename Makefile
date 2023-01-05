@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2023/01/04 19:44:35 by zouaraqa         ###   ########.fr        #
+#    Updated: 2023/01/05 11:21:09 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 SRC = 	so_long.c \
 		errors.c \
 		errors2.c \
+		creat_path.c \
+		destroy_images1.c \
+		destroy_images2.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		creat_map.c \

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/04 19:11:28 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:18:33 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,6 @@
 static void	put_image(t_var *va, void *img, int x, int y)
 {
 	mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, img, x * 80, y * 80);
-}
-
-void	creat_image_path(t_var *va)
-{
-	va->vod.img_up = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/up.xpm", &va->width, &va->hight);
-	va->vod.img_down = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/down.xpm", &va->width, &va->hight);
-	va->vod.img_right = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/right.xpm", &va->width, &va->hight);
-	va->vod.img_left = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/left.xpm", &va->width, &va->hight);
-	va->vod.img_coin = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/coin.xpm", &va->width, &va->hight);
-	va->vod.img_exit = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/exit.xpm", &va->width, &va->hight);
-	va->vod.img_closed = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/closed.xpm", &va->width, &va->hight);
-	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/wall.xpm", &va->width, &va->hight);
-	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/ground.xpm", &va->width, &va->hight);
-	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/win.xpm", &va->width, &va->hight);
 }
 
 static void	open_or_closedoor(t_var *va)
