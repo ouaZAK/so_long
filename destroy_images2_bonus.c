@@ -6,11 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:14:46 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 15:22:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/06 11:27:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_exit(t_var *va)
 {
