@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 18:17:00 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/06 08:58:05 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ char	*get_first_line(char **av, t_var *va, char *tmp)
 	va->fd = open(av[1], O_RDONLY);
 	tmp = get_next_line(va->fd);
 	if (!tmp)
+	{
+		free(tmp);
+		free(va);
+		write(1, "Error\n", 6);
 		exit(0);
+	}
 	return (tmp);
 }
 
@@ -77,5 +82,5 @@ void	check_cpy(t_var *va)
 		va->j++;
 	}
 	if (va->p != 0 || va->c != 0 || va->e != 0)
-		exit_plus_error();
+		exit_free_all(va, va->str, va->cpy);
 }

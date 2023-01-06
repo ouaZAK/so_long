@@ -6,11 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:14:46 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 11:15:17 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/06 11:27:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_exit(t_var *va)
 {
@@ -35,3 +35,10 @@ void	free_ground(t_var *va)
 	mlx_destroy_image(va->mlx_ptr, va->vod.img_ground);
 	free_wall(va);
 }
+
+void	free_win(t_var *va)
+{
+	mlx_destroy_image(va->mlx_ptr, va->vod.img_win);
+	free_ground(va);
+}
+

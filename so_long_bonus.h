@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 18:19:05 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/06 11:29:42 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,29 @@ void	creat_map2(t_var *va);
 int		movement(int key, t_var *va);
 void	print_string(t_var *va);
 
+void	ft_free(t_var *va, char **str);
+void	exit_free_line(t_var *va, char *tmp);
+void	exit_free_all(t_var *va, char **str, char **cpy);
+void	exit_plus_destroy(t_var *va);
+
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s1);
 char	*ft_strjoin2(char *s1, char *s2);
+
+void	free_up(t_var *va);
+void	free_down(t_var *va);
+void	free_right(t_var *va);
+void	free_left(t_var *va);
+void	free_coin(t_var *va);
+void	free_exit(t_var *va);
+void	free_closed(t_var *va);
+void	free_wall(t_var *va);
+void	free_ground(t_var *va);
+void	free_win(t_var *va);
+void	free_lose(t_var *va);
+void	free_enemy(t_var *va);
+void	free_anim_1(t_var *va);
+void	free_anim_2(t_var *va);
+void	free_anim_3(t_var *va);
 
 #endif
