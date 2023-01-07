@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:23:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 15:59:43 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 10:54:12 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*get_after_nl(char *stock)
+static char	*get_after_nl(char *stock)
 {
 	char	*str;
 	int		i;
@@ -38,7 +38,7 @@ char	*get_after_nl(char *stock)
 	return (str);
 }
 
-char	*get_befor_nl(char *stock)
+static char	*get_befor_nl(char *stock)
 {
 	char	*str;
 	int		i;
@@ -63,7 +63,7 @@ char	*get_befor_nl(char *stock)
 	return (str);
 }
 
-char	*read_and_stock(int fd, char *stock)
+static char	*read_and_stock(int fd, char *stock)
 {
 	char	*buff;
 	int		nbr_readed;

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:40:38 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 09:51:43 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:21:09 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ static void	read_map(char **av, t_var *va)
 	va->str = ft_split(va->line, '\n');
 	va->cpy = ft_split(va->line, '\n');
 	if (check_size_and_walls(va) == 1)
+	{
+		close(va->fd);
 		exit_free_all(va, va->str, va->cpy);
+	}
 	close(va->fd);
 }
 

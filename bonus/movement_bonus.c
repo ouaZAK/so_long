@@ -6,11 +6,20 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:02:10 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 18:11:10 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:56:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+static void	print_string(t_var *va)
+{
+	free(va->line);
+	va->line = ft_strjoin2(ft_strdup("movement = "), ft_itoa(va->movement));
+	va->movement += 1;
+	mlx_string_put(va->mlx_ptr, va->win_ptr, 80, 80, 0xFFFFFF, \
+		va->line);
+}
 
 static void	move(int y, int x, t_var *va, void *player)
 {

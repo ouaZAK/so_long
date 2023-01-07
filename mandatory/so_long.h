@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 14:44:54 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 10:50:27 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include <mlx.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:51:45 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 08:58:05 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:10:26 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*get_first_line(char **av, t_var *va, char *tmp)
 	tmp = get_next_line(va->fd);
 	if (!tmp)
 	{
+		close(va->fd);
 		free(tmp);
 		free(va);
 		write(1, "Error\n", 6);

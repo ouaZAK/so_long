@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:29:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 08:49:15 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:58:54 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	creat_map(t_var *va, void *player)
 	}
 }
 
-static void	water_img(t_var *va, int j, int i)
+static void	fire_img(t_var *va, int j, int i)
 {
 	if (j == 0)
 		put_image(va, va->vod.img_fire, va->i, va->j);
@@ -79,7 +79,7 @@ void	creat_map2(t_var *va)
 				mlx_put_image_to_window(va->mlx_ptr, va->win_ptr, \
 					va->vod.img_lose, 0, 0);
 			if (va->str[va->j][va->i] == '1')
-				water_img(va, va->j, va->i);
+				fire_img(va, va->j, va->i);
 		va->i++;
 		}
 		va->j++;

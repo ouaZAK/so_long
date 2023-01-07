@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 14:54:37 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 16:00:50 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:19:59 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	exit_free_all(t_var *va, char **str, char **cpy)
 
 void	exit_free_line(t_var *va, char *tmp)
 {
+	close(va->fd);
 	free(tmp);
 	free(va->line);
 	free(va);

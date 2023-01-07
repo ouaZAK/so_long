@@ -6,22 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 15:32:15 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:56:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	print_string(t_var *va)
-{
-	free(va->line);
-	va->line = ft_strjoin2(ft_strdup("movement = "), ft_itoa(va->movement));
-	va->movement += 1;
-	mlx_string_put(va->mlx_ptr, va->win_ptr, 80, 80, 0xFFFFFF, \
-		va->line);
-}
-
-void	creat_animation(t_var *va, void *anim_path)
+static void	creat_animation(t_var *va, void *anim_path)
 {
 	va->vod.img_fire = anim_path;
 	creat_map2(va);
@@ -45,7 +36,7 @@ static int	animation(t_var *va)
 	return (0);
 }
 
-void	start_everything(t_var *va)
+static void	start_everything(t_var *va)
 {
 	va->mlx_ptr = mlx_init();
 	if (!va->mlx_ptr)
