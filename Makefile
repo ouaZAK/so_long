@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2023/01/06 19:51:33 by zouaraqa         ###   ########.fr        #
+#    Updated: 2023/01/07 10:31:51 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -rf
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 MAND_DIR = mandatory
-SRC = 	\
+MAND_FILES = 	\
 		so_long.c \
 		creat_path.c \
 		creat_map.c \
@@ -31,12 +31,12 @@ SRC = 	\
 		exit_destroy.c \
 		get_next_line.c \
 		get_next_line_utils.c
-SRCS = $(addprefix $(MAND_DIR)/,$(SRC))
-OBJ = $(SRC:.c=.o)
-OBJS = $(addprefix $(MAND_DIR)/,$(OBJ))
+SRCS = $(addprefix $(MAND_DIR)/,$(MAND_FILES))
+OBJ_SUFIX = $(MAND_FILES:.c=.o)
+OBJS = $(addprefix $(MAND_DIR)/,$(OBJ_SUFIX))
 
 BONUS_DIR = bonus
-SRC_BONUS =	\
+BONUS_FILES =	\
 			so_long_bonus.c \
 			creat_map_bonus.c \
 			creat_path_bonus.c \
@@ -52,9 +52,9 @@ SRC_BONUS =	\
 			exit_destroy_bonus.c \
 			get_next_line_bonus.c \
 			get_next_line_utils_bonus.c
-SRCS_BONUS = $(addprefix $(BONUS_DIR)/,$(SRC_BONUS))
-OBJ_NAME = $(SRC_BONUS:.c=.o)
-OBJ_BONUS = $(addprefix $(BONUS_DIR)/,$(OBJ_NAME))
+SRCS_BONUS = $(addprefix $(BONUS_DIR)/,$(BONUS_FILES))
+OBJ_SUFIX_BONUS = $(BONUS_FILES:.c=.o)
+OBJS_BONUS = $(addprefix $(BONUS_DIR)/,$(OBJ_SUFIX_BONUS))
 
 all : $(NAME)
 
@@ -63,19 +63,19 @@ $(NAME) : $(OBJS)
 
 $(OBJS) : $(SRCS)
 	@$(CC) $(FLAGS) -c $^
-	@mv $(OBJ) $(MAND_DIR)
+	@mv $(OBJ_SUFIX) $(MAND_DIR)
 
 bonus : $(NAME_BONUS)
 
-$(NAME_BONUS) : $(OBJ_BONUS)
+$(NAME_BONUS) : $(OBJS_BONUS)
 	@$(CC) $(FLAGS) $^ $(MLX) -o $@
 
-$(OBJ_BONUS) : $(SRCS_BONUS)
+$(OBJS_BONUS) : $(SRCS_BONUS)
 	@$(CC) $(FLAGS) -c $^
-	@mv $(OBJ_NAME) $(BONUS_DIR)
+	@mv $(OBJ_SUFIX_BONUS) $(BONUS_DIR)
 
 clean :
-	@$(RM) $(OBJS) $(OBJ_BONUS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
 	@$(RM) $(NAME) $(NAME_BONUS)

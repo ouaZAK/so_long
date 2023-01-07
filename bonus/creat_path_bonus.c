@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:29:08 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 15:32:36 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 09:46:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static void	creat_anim_path(t_var *va)
+static void	creat_anim_path_2(t_var *va)
 {
 	va->vod.img_enemy = mlx_xpm_file_to_image(va->mlx_ptr, \
 		"./textures/enemy.xpm", &va->width, &va->hight);
@@ -34,6 +34,31 @@ static void	creat_anim_path(t_var *va)
 		"./textures/4.xpm", &va->width, &va->hight);
 	if (!va->anim.anim_4)
 		free_anim_3(va);
+}
+
+static void	creat_anim_path_1(t_var *va)
+{
+	va->vod.img_closed = mlx_xpm_file_to_image(va->mlx_ptr, \
+		"./textures/closed.xpm", &va->width, &va->hight);
+	if (!va->vod.img_closed)
+		free_exit(va);
+	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, \
+		"./textures/wall.xpm", &va->width, &va->hight);
+	if (!va->vod.img_wall)
+		free_closed(va);
+	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, \
+		"./textures/ground.xpm", &va->width, &va->hight);
+	if (!va->vod.img_ground)
+		free_wall(va);
+	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, \
+		"./textures/win.xpm", &va->width, &va->hight);
+	if (!va->vod.img_win)
+		free_ground(va);
+	va->vod.img_lose = mlx_xpm_file_to_image(va->mlx_ptr, \
+		"./textures/lose.xpm", &va->width, &va->hight);
+	if (!va->vod.img_lose)
+		free_win(va);
+	creat_anim_path_2(va);
 }
 
 void	creat_image_path(t_var *va)
@@ -62,25 +87,5 @@ void	creat_image_path(t_var *va)
 		"./textures/exit.xpm", &va->width, &va->hight);
 	if (!va->vod.img_exit)
 		free_coin(va);
-	va->vod.img_closed = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/closed.xpm", &va->width, &va->hight);
-	if (!va->vod.img_closed)
-		free_exit(va);
-	va->vod.img_wall = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/wall.xpm", &va->width, &va->hight);
-	if (!va->vod.img_wall)
-		free_closed(va);
-	va->vod.img_ground = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/ground.xpm", &va->width, &va->hight);
-	if (!va->vod.img_ground)
-		free_wall(va);
-	va->vod.img_win = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/win.xpm", &va->width, &va->hight);
-	if (!va->vod.img_win)
-		free_ground(va);
-	va->vod.img_lose = mlx_xpm_file_to_image(va->mlx_ptr, \
-		"./textures/lose.xpm", &va->width, &va->hight);
-	if (!va->vod.img_lose)
-		free_win(va);
-	creat_anim_path(va);
+	creat_anim_path_1(va);
 }

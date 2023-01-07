@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/05 12:58:32 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 09:41:50 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	move(int y, int x, t_var *va, void *player)
 {
 	ft_putnbr_fd(va->movement += 1, 1);
+	write(1, "\n", 1);
 	if (va->str[va->y_p - y][va->x_p - x] == 'C')
 		va->coin--;
 	va->str[va->y_p - y][va->x_p - x] = 'P';

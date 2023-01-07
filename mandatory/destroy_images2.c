@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:14:46 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 15:22:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 09:42:57 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,3 @@ void	free_win(t_var *va)
 	mlx_destroy_image(va->mlx_ptr, va->vod.img_win);
 	free_ground(va);
 }
-
