@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:04:43 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/07 09:41:50 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:49:48 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	start_everything(t_var *va)
 	va->win_ptr = mlx_new_window(va->mlx_ptr, va->x * 80, \
 		va->y * 80, "so_long");
 	if (!va->win_ptr)
-		exit_free_all(va, va->str, NULL);
+		free_init(va);
 	creat_image_path(va);
 	creat_map(va, va->vod.img_down);
 	mlx_hook(va->win_ptr, 2, 0, movement, va);

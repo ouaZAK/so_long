@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/07 10:50:27 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 14:42:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_putnbr_fd(int n, int fd);
 char	**ft_split(char const *s, char c);
 
 //destroy imgs
+void	free_init(t_var *va);
+void	free_window(t_var *va);
 void	free_up(t_var *va);
 void	free_down(t_var *va);
 void	free_right(t_var *va);

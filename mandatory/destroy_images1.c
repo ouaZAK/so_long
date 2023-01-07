@@ -6,19 +6,31 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:13:46 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/06 15:21:56 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:02:16 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_up(t_var *va)
+void	free_init(t_var *va)
 {
 	ft_free(va, va->str);
-	mlx_destroy_image(va->mlx_ptr, va->vod.img_up);
+	free(va->mlx_ptr);
 	free(va);
 	write(1, "Error\n", 6);
 	exit(0);
+}
+
+void	free_window(t_var *va)
+{
+	mlx_destroy_window(va->mlx_ptr, va->win_ptr);
+	free_init(va);
+}
+
+void	free_up(t_var *va)
+{
+	mlx_destroy_image(va->mlx_ptr, va->vod.img_up);
+	free_window(va);
 }
 
 void	free_down(t_var *va)
@@ -31,16 +43,4 @@ void	free_right(t_var *va)
 {
 	mlx_destroy_image(va->mlx_ptr, va->vod.img_right);
 	free_down(va);
-}
-
-void	free_left(t_var *va)
-{
-	mlx_destroy_image(va->mlx_ptr, va->vod.img_left);
-	free_right(va);
-}
-
-void	free_coin(t_var *va)
-{
-	mlx_destroy_image(va->mlx_ptr, va->vod.img_coin);
-	free_left(va);
 }

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:05:29 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/07 11:56:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:00:33 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ char	*ft_strdup(char *s1);
 char	*ft_strjoin2(char *s1, char *s2);
 
 //destroy imgs
+void	free_init(t_var *va);
+void	free_window(t_var *va);
 void	free_up(t_var *va);
 void	free_down(t_var *va);
 void	free_right(t_var *va);

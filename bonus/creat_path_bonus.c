@@ -6,11 +6,26 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:29:08 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/07 09:46:44 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:07:09 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	free_init(t_var *va)
+{
+	ft_free(va, va->str);
+	free(va->mlx_ptr);
+	free(va);
+	write(1, "Error\n", 6);
+	exit(0);
+}
+
+void	free_window(t_var *va)
+{
+	mlx_destroy_window(va->mlx_ptr, va->win_ptr);
+	free_init(va);
+}
 
 static void	creat_anim_path_2(t_var *va)
 {

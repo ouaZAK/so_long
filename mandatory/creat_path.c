@@ -6,11 +6,17 @@
 /*   By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:18:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/01/07 12:03:14 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:02:34 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_ground(t_var *va)
+{
+	mlx_destroy_image(va->mlx_ptr, va->vod.img_ground);
+	free_wall(va);
+}
 
 static void	creat_path_2(t_var *va)
 {
@@ -41,7 +47,7 @@ void	creat_image_path(t_var *va)
 	va->vod.img_up = mlx_xpm_file_to_image(va->mlx_ptr, \
 		"./textures/up.xpm", &va->width, &va->hight);
 	if (!va->vod.img_up)
-		exit_free_all(va, va->str, NULL);
+		free_window(va);
 	va->vod.img_down = mlx_xpm_file_to_image(va->mlx_ptr, \
 		"./textures/down.xpm", &va->width, &va->hight);
 	if (!va->vod.img_down)
