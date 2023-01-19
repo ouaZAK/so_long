@@ -6,7 +6,7 @@
 #    By: zouaraqa <zouaraqa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 11:56:06 by zouaraqa          #+#    #+#              #
-#    Updated: 2023/01/07 15:23:18 by zouaraqa         ###   ########.fr        #
+#    Updated: 2023/01/19 12:56:30 by zouaraqa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS = -Wall -Wextra -Werror
 NAME = so_long
 NAME_BONUS = so_long_bonus
 RM = rm -rf
-MLX = -lmlx -framework OpenGL -framework AppKit
+MLX =  -lmlx -framework OpenGL -framework AppKit #-lmlx -lXext -lX11
 
 MAND_DIR = mandatory
 MAND_FILES = 	\
@@ -58,21 +58,19 @@ OBJS_BONUS = $(addprefix $(BONUS_DIR)/,$(OBJ_SUFIX_BONUS))
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	@$(CC) $(FLAGS) $^ $(MLX) -o $@
+$(BONUS_DIR)/%.o : $(BONUS_DIR)/%.c
+	$(CC) $(FLAGS) -c $< -o $@
 
-$(OBJS) : $(SRCS)
-	@$(CC) $(FLAGS) -c $^
-	@mv $(OBJ_SUFIX) $(MAND_DIR)
+$(MAND_DIR)/%.o : $(MAND_DIR)/%.c
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(NAME) : $(OBJS)
+	$(CC) $(FLAGS) $^ $(MLX) -o $@
 
 bonus : $(NAME_BONUS)
 
 $(NAME_BONUS) : $(OBJS_BONUS)
 	@$(CC) $(FLAGS) $^ $(MLX) -o $@
-
-$(OBJS_BONUS) : $(SRCS_BONUS)
-	@$(CC) $(FLAGS) -c $^
-	@mv $(OBJ_SUFIX_BONUS) $(BONUS_DIR)
 
 clean :
 	@$(RM) $(OBJS) $(OBJS_BONUS)
